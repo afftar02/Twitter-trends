@@ -8,5 +8,6 @@ namespace Twitter_trends
 {
     interface IReader
     {
+        void Read();
     }
 }
