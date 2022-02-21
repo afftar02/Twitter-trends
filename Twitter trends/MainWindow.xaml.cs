@@ -22,6 +22,7 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
+            Console.WriteLine("Hello");
             InitializeComponent();
         }
     }
