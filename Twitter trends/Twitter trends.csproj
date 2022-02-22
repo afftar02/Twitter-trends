@@ -95,9 +95,22 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Data\Resources\states\states.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Resources\sentiments\sentiments.txt" />
+    <Resource Include="Data\Resources\tweets\cali_tweets2014 .txt" />
+    <Resource Include="Data\Resources\tweets\family_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\football_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\high_school_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\movie_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\shopping_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\snow_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\texas_tweets2014.txt" />
+    <Resource Include="Data\Resources\tweets\weekend_tweets2014.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
