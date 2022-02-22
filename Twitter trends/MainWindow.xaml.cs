@@ -15,14 +15,11 @@ using System.Windows.Shapes;
 
 namespace Twitter_trends
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
-            Console.WriteLine("Hello");
+            Console.WriteLine("gg, ya v tilte!!!");
             InitializeComponent();
         }
     }
