@@ -9,5 +9,6 @@ namespace Twitter_trends
     interface IParser
     {
         void Parse();
+
     }
 }
