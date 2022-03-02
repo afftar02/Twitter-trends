@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +22,26 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
-            Console.WriteLine("gg, ya v tilte!!!");
             InitializeComponent();
+
+            GMaps.Instance.Mode = AccessMode.ServerAndCache;
+            mapControl.MapProvider = GMapProviders.GoogleMap;
+            mapControl.MinZoom = 2;  //Минимальный зум
+            mapControl.MaxZoom = 17; //Максимальный зум
+            mapControl.Zoom = 5;     //Текущий зум
+            mapControl.ShowCenter = false; //Не показывать центральный крест
+            mapControl.DragButton = MouseButton.Left; //Щелкните левой кнопкой мыши, чтобы перетащить карту
+            mapControl.Position = new PointLatLng(53.9, 27.5666);
+
+            mapControl.MouseLeftButtonDown += new MouseButtonEventHandler(mapControl_MouseLeftButtonDown);
+        }
+
+        void mapControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point clickPoint = e.GetPosition(mapControl);
+            PointLatLng point = mapControl.FromLocalToLatLng((int)clickPoint.X, (int)clickPoint.Y);
+            GMapMarker marker = new GMapMarker(point);
+            mapControl.Markers.Add(marker);
         }
     }
 }
