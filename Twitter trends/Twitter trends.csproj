@@ -66,6 +66,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\DataBase.cs" />
     <Compile Include="Services\Parsers\IParser.cs" />
     <Compile Include="Services\Readers\IReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
