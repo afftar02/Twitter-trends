@@ -8,6 +8,6 @@ namespace Twitter_trends
 {
     interface IReader
     {
-        void Read();
+        string[] Read(string filePath);
     }
 }

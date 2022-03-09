@@ -8,6 +8,6 @@ namespace Twitter_trends
 {
     interface IParser
     {
-        void Parse();
+        object Parse(string line);
     }
 }
