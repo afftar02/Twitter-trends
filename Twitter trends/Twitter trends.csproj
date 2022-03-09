@@ -69,9 +69,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FileReader.cs" />
-    <Compile Include="IParser.cs" />
-    <Compile Include="IReader.cs" />
+    <Compile Include="Services\Parsers\IParser.cs" />
+    <Compile Include="Services\Readers\IReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -115,6 +114,9 @@
     <Resource Include="Data\Resources\tweets\snow_tweets2014.txt" />
     <Resource Include="Data\Resources\tweets\texas_tweets2014.txt" />
     <Resource Include="Data\Resources\tweets\weekend_tweets2014.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
