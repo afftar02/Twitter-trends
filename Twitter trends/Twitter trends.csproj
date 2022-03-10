@@ -175,6 +175,9 @@
   <ItemGroup>
     <Resource Include="Data\Pictures\Vp3R.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Pictures\124021.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -15,11 +15,12 @@
         xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:local="clr-namespace:Twitter_trends"
         mc:Ignorable="d"
-        Title="Twitter trends" Height="720" Width="1280" Icon="/Data/Pictures/SeekPng.com_shadow-png_2098957.png">
+        Title="Twitter trends" Height="714" Width="1341.5" Icon="/Data/Pictures/SeekPng.com_shadow-png_2098957.png">
     <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding ElementName=LeftExtraMenu, Path=Width}"></ColumnDefinition>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="361*"/>
+            <ColumnDefinition Width="1048*"/>
             <ColumnDefinition Width="250"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -137,22 +138,20 @@
         <Grid x:Name="CenterMapPlaceGrid"
               Grid.Row="0"
               Grid.Column="0"
-              Grid.ColumnSpan="2"
+              Grid.ColumnSpan="3"
               >
             <gmaps:GMapControl MouseDoubleClick="MouseDoubleClick" x:Name="gmap" Loaded="Loaded_gmap"/>
         </Grid>
         <Grid x:Name="RightStatisticsInfoGrid"
               Grid.Row="0"
-              Grid.RowSpan="2"
-              Grid.Column="2"
+              Grid.Column="3"
               >
-            <DockPanel VerticalAlignment="Top">
+            <DockPanel VerticalAlignment="Top" Height="687">
                 <Image x:Name="RightLogoImage"
                        gif:ImageBehavior.AnimatedSource="Data/Pictures/Vp3R.gif"
                        gif:ImageBehavior.AutoStart="False"
-                       Height="auto"
-                       DockPanel.Dock="Top">
-                </Image>
+                       Height="216"
+                       DockPanel.Dock="Top"/>
 
                 <TextBlock Text="Statistics:"
                            HorizontalAlignment="Center"
@@ -300,12 +299,8 @@
                     </Border>
                 </DockPanel>
             </DockPanel>
+            <Image HorizontalAlignment="Left" Height="188" Margin="30,10,0,0" VerticalAlignment="Top" Width="188" Name="TwitterLogoImage" Source="/Data/Pictures/124021.png"/>
         </Grid>
-        <Grid x:Name="BottomTimePanelGrid"
-              Grid.Row="1"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-              HorizontalAlignment="Center"
-              />
+
     </Grid>
 </Window>

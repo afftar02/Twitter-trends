@@ -224,6 +224,7 @@ namespace Twitter_trends
                     }
             }
 
+            TwitterLogoImage.Visibility = Visibility.Collapsed;
             var controller = ImageBehavior.GetAnimationController(RightLogoImage);
             controller.Play();
 
@@ -232,8 +233,12 @@ namespace Twitter_trends
             country = DataBase.GetInstance().Country;
             DrawStates();
 
+            //для проверки
+            await Task.Delay(10000);
+
             controller.Pause();
             controller.GotoFrame(0);
+            TwitterLogoImage.Visibility = Visibility.Visible;
         }
 
         private void MouseDoubleClick(object sender, MouseButtonEventArgs e)
