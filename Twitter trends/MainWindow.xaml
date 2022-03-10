@@ -201,7 +201,7 @@
                                Height="auto"
                                Margin="0 10"
                                HorizontalAlignment="Center"/>
-                    <Border Background="DarkBlue"
+                    <Border Background="ForestGreen"
                             CornerRadius="20"
                             DockPanel.Dock="Top"
                             Height="30"
@@ -213,7 +213,7 @@
                                    Foreground="White"
                                    ></TextBlock>
                     </Border>
-                    <Border Background="Blue"
+                    <Border Background="LimeGreen"
                             CornerRadius="20"
                             DockPanel.Dock="Top"
                             Height="30"
@@ -225,7 +225,7 @@
                                    Foreground="White"
                                    ></TextBlock>
                     </Border>
-                    <Border Background="LightBlue"
+                    <Border Background="GreenYellow"
                             CornerRadius="20"
                             DockPanel.Dock="Top"
                             Height="30"
