@@ -20,10 +20,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Twitter_trends.Data;
 using Twitter_trends.Models;
 using WpfAnimatedGif;
 using Brushes = System.Windows.Media.Brushes;
 using Path = System.Windows.Shapes.Path;
+using Point = Twitter_trends.Models.Point;
 
 namespace Twitter_trends
 {
@@ -35,18 +37,18 @@ namespace Twitter_trends
         public MainWindow()
         {
             InitializeComponent();
-            //this.Loaded += MainWindow_Loaded;
+            this.Loaded += MainWindow_Loaded;
         }
-        //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        //{
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
 
-        //    //data
-        //    //загрузка вьюмодел для кнопок меню
-        //    //MainWindowViewModel viewModel = new MainWindowViewModel();
-        //    //this.DataContext = viewModel;
+            //data
+            //загрузка вьюмодел для кнопок меню
+            ListView viewModel = new ListView();
+            this.DataContext = viewModel;
 
 
-        //}
+        }
         Country country;
         private void Loaded_gmap(object sender, RoutedEventArgs e)
         {
@@ -75,7 +77,7 @@ namespace Twitter_trends
         private void DrawStates()
         {
             gmap.Markers.Clear();
-            foreach (var state in Database.GetInstance().Country.States)
+            foreach (var state in DataBase.GetInstance().Country.States)
             {
                 foreach (var polygon in state.Polygons)
                 {
@@ -127,7 +129,7 @@ namespace Twitter_trends
         }
         private SolidColorBrush GetColorByTweet(Tweet tweet)
         {
-            double temp = tweet.MoodWeight;
+            double temp = 0.0;//tweet.MoodWeight;
 
             if (temp == 0) { return Brushes.White; }
             else if (temp > 0)
@@ -151,15 +153,16 @@ namespace Twitter_trends
             List<Tweet> tweets = state.Tweets;
             foreach (var tweet in tweets)
             {
-                GMapMarker marker = new GMapMarker(new PointLatLng(tweet.PointOnMap.X, tweet.PointOnMap.Y));
+                GMapMarker marker = new GMapMarker(new PointLatLng(/*tweet.PointOnMap.X, tweet.PointOnMap.Y*/));
                 marker.Shape = new Ellipse
                 {
                     Width = 5,
                     Height = 5,
                     Fill = GetColorByTweet(tweet),
-                    ToolTip = "Tweet : " + tweet.TweetMessage + "\n" +
-                              "Date : " + tweet.PublicationDate + "\n" +
-                              "MoodWeight : " + tweet.MoodWeight
+                    //ToolTip = "Tweet : " + tweet.TweetMessage + "\n" +
+                    //          "Date : " + tweet.PublicationDate + "\n" +
+                    //          "MoodWeight : " + tweet.MoodWeight
+                    ToolTip = "some tweet information"
                 };
                 gmap.Markers.Add(marker);
             }
@@ -224,9 +227,9 @@ namespace Twitter_trends
             var controller = ImageBehavior.GetAnimationController(RightLogoImage);
             controller.Play();
 
-            Database.GetInstance().SetPathTweetFile(path);
-            await Task.Run(Database.GetInstance().StartNewState);
-            country = Database.GetInstance().Country;
+            DataBase.GetInstance().SetPathTweetFile(path);
+            await Task.Run(DataBase.GetInstance().StartNewState);
+            country = DataBase.GetInstance().Country;
             DrawStates();
 
             controller.Pause();
@@ -247,7 +250,7 @@ namespace Twitter_trends
             {
                 foreach (var polygon in state.Polygons)
                 {
-                    if (ExtraFuncs.IsInside(polygon, tweet))
+                    if (true/*ExtraFuncs.IsInside(polygon, tweet)*/)
                     {
                         if (state.Tweets.Count == 0)
                         {
@@ -259,8 +262,8 @@ namespace Twitter_trends
                         else
                         {
                             indexBlock.Text = state.Name.ToString();
-                            mostNegativeBlock.Text = state.Tweets.Min(u => u.MoodWeight).ToString();
-                            mostPositiveBlock.Text = state.Tweets.Max(u => u.MoodWeight).ToString();
+                            mostNegativeBlock.Text = state.Tweets.Min(u => 0.0/*u.MoodWeight*/).ToString();
+                            mostPositiveBlock.Text = state.Tweets.Max(u => 0.0/*u.MoodWeight*/).ToString();
                         }
 
                     }

@@ -15,7 +15,7 @@
         xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:local="clr-namespace:Twitter_trends"
         mc:Ignorable="d"
-        Title="Twitter trends" Height="720" Width="1280" Icon="/Data/Pictures/MainIcon.ico">
+        Title="Twitter trends" Height="720" Width="1280" Icon="/Data/Pictures/SeekPng.com_shadow-png_2098957.png">
     <Grid ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{Binding ElementName=LeftExtraMenu, Path=Width}"></ColumnDefinition>

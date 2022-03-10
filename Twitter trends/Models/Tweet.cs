@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twitter_trends.Models;
 
 namespace Twitter_trends
 {
@@ -11,6 +12,10 @@ namespace Twitter_trends
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
 		public string message { get; }
+
+		private Point pointOnMap;
+
+		public Point PointOnMap { get { return pointOnMap; } set { pointOnMap = value; } }
 
 		public Tweet() { }
 		public Tweet(Location location, DateTime timeOfCreation, string message)
