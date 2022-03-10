@@ -33,10 +33,9 @@
               Background="Transparent"
               Panel.ZIndex="1"
               >
-            <DockPanel HorizontalAlignment="Left">
+            <DockPanel HorizontalAlignment="Left" Background="DeepSkyBlue">
                 <ToggleButton  x:Name="LeftExtraMenuButton"
                                Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                               Background="White"
                                BorderBrush="Black"
                                DockPanel.Dock="Top"
                                VerticalAlignment="Top"

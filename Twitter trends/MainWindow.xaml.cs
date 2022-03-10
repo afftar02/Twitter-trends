@@ -63,12 +63,12 @@ namespace Twitter_trends
             gmap.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
 
             gmap.ShowTileGridLines = false;
-            gmap.Zoom = 2;
+            gmap.Zoom = 3;
             gmap.ShowCenter = false;
 
             gmap.MapProvider = GMapProviders.BingMap;
             GMaps.Instance.Mode = AccessMode.ServerOnly;
-            gmap.Position = new PointLatLng(51.39920565355378, -108.63281250000001);
+            gmap.Position = new PointLatLng(50, -90);
 
 
             GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
@@ -234,7 +234,7 @@ namespace Twitter_trends
             DrawStates();
 
             //для проверки
-            await Task.Delay(10000);
+            //await Task.Delay(10000);
 
             controller.Pause();
             controller.GotoFrame(0);
