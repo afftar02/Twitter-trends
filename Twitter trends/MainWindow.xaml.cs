@@ -20,15 +20,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using Twitter_trends.Data;
-//using Twitter_trends.Models;
-//using Twitter_trends.Models.Parsers;
-//using Twitter_trends.Services.Extra;
-//using Twitter_trends.Services.Parsers;
+using Twitter_trends.Models;
 using WpfAnimatedGif;
 using Brushes = System.Windows.Media.Brushes;
 using Path = System.Windows.Shapes.Path;
-//using Point = Twitter_trends.Models.Point;
 
 namespace Twitter_trends
 {
@@ -40,18 +35,18 @@ namespace Twitter_trends
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += MainWindow_Loaded;
+            //this.Loaded += MainWindow_Loaded;
         }
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
+        //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        //{
 
-            //data
-            //загрузка вьюмодел для кнопок меню
-            //MainWindowViewModel viewModel = new MainWindowViewModel();
-            //this.DataContext = viewModel;
+        //    //data
+        //    //загрузка вьюмодел для кнопок меню
+        //    //MainWindowViewModel viewModel = new MainWindowViewModel();
+        //    //this.DataContext = viewModel;
 
 
-        }
+        //}
         Country country;
         private void Loaded_gmap(object sender, RoutedEventArgs e)
         {
@@ -63,7 +58,7 @@ namespace Twitter_trends
             gmap.MaxZoom = 20;
             gmap.MinZoom = 3;
 
-            gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
+            gmap.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
 
             gmap.ShowTileGridLines = false;
             gmap.Zoom = 2;

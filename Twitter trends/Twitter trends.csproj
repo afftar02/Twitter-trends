@@ -104,7 +104,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\Polygon.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Models\Tweet.cs" />
     <Compile Include="TweetParser.cs" />
     <Page Include="MainWindow.xaml">
