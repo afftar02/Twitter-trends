@@ -173,10 +173,7 @@
     <Resource Include="Data\Pictures\SeekPng.com_shadow-png_2098957.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\Pictures\twittergif.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Data\Pictures\twitterstatic.png" />
+    <Resource Include="Data\Pictures\Vp3R.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -148,7 +148,7 @@
               >
             <DockPanel VerticalAlignment="Top">
                 <Image x:Name="RightLogoImage"
-                       gif:ImageBehavior.AnimatedSource="Data/Pictures/twittergif.gif"
+                       gif:ImageBehavior.AnimatedSource="Data/Pictures/Vp3R.gif"
                        gif:ImageBehavior.AutoStart="False"
                        Height="auto"
                        DockPanel.Dock="Top">
@@ -306,12 +306,6 @@
               Grid.Column="0"
               Grid.ColumnSpan="3"
               HorizontalAlignment="Center"
-              >
-            <TextBlock x:Name="BottomRightsText"
-                       Text="The project was created by 4 glorious guys: Me and three friends of mine"
-                       FontSize="21"
-                       VerticalAlignment="Center"
-                       />
-        </Grid>
+              />
     </Grid>
 </Window>
