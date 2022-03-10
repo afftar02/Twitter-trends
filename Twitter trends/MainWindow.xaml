@@ -3,10 +3,315 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:local="clr-namespace:Twitter_trends"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Twitter trends" Height="720" Width="1280" Icon="/Data/Pictures/MainIcon.ico">
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding ElementName=LeftExtraMenu, Path=Width}"></ColumnDefinition>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="250"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="659*"></RowDefinition>
+            <RowDefinition Height="46*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="LeftExtraMenu"
+              Grid.Row="0"
+              Width="35"
+              Background="Transparent"
+              Panel.ZIndex="1"
+              >
+            <DockPanel HorizontalAlignment="Left">
+                <ToggleButton  x:Name="LeftExtraMenuButton"
+                               Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                               Background="White"
+                               BorderBrush="Black"
+                               DockPanel.Dock="Top"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Right"
+                               Height="20"
+                               Width="35"
+                               Margin="0 10"
+                    >
+                    <ToggleButton.Triggers>
+                        <EventTrigger 
+                                RoutedEvent="ToggleButton.Checked"
+                                >
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                                Storyboard.TargetName="LeftExtraMenu"
+                                                Storyboard.TargetProperty="Width"
+                                                From="35"
+                                                To="230"
+                                                Duration="0:0:0.2"/>
+                                        <ColorAnimation
+                                                To="White"
+                                                Storyboard.TargetName="LeftExtraMenu"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                                                Duration="0:0:0.4"
+                                                         >
+                                        </ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger 
+                             RoutedEvent="ToggleButton.Unchecked">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation 
+                                                Storyboard.TargetName="LeftExtraMenu"
+                                                Storyboard.TargetProperty="Width"
+                                                From="230"
+                                                To="35"
+                                                Duration="0:0:0.2"/>
+                                        <ColorAnimation
+                                                To="Transparent"
+                                                Storyboard.TargetName="LeftExtraMenu"
+                                                Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)" 
+                                                Duration="0:0:0.4"
+                                                         >
+                                        </ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </ToggleButton.Triggers>
+                </ToggleButton>
+                <ListView x:Name="ListViewSettingsMenu" 
+                          DockPanel.Dock="Top"
+                          HorizontalAlignment="Left"
+                          Width="230"
+                          Visibility="Visible"
+                          >
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="BookOpen"></materialDesign:PackIcon>
+                            <TextBlock Text="Choose" Margin="15 0"></TextBlock>
+                            <ComboBox x:Name="ComboBoxChooseCountry" 
+                                      SelectionChanged="ComboBox_Selected"
+                                      Margin="15 -3"
+                                      >
+                                <ComboBoxItem>Cali</ComboBoxItem>
+                                <ComboBoxItem>Family</ComboBoxItem>
+                                <ComboBoxItem>Football</ComboBoxItem>
+                                <ComboBoxItem>School</ComboBoxItem>
+                                <ComboBoxItem>Movie</ComboBoxItem>
+                                <ComboBoxItem>Shopping</ComboBoxItem>
+                                <ComboBoxItem>Snow</ComboBoxItem>
+                                <ComboBoxItem>Texas</ComboBoxItem>
+                                <ComboBoxItem>Weekend</ComboBoxItem>
+
+                            </ComboBox>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="UnidentifiedFlyingObject"></materialDesign:PackIcon>
+                            <TextBlock Text="I am an UFO" Margin="20 0"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem PreviewMouseLeftButtonUp ="listViewItemClose_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CloseBold"></materialDesign:PackIcon>
+                            <TextBlock Text="Close Application" Margin="20 0"></TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </DockPanel>
+        </Grid>
+        <Grid x:Name="CenterMapPlaceGrid"
+              Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              >
+            <gmaps:GMapControl MouseDoubleClick="MouseDoubleClick" x:Name="gmap" Loaded="Loaded_gmap"/>
+        </Grid>
+        <Grid x:Name="RightStatisticsInfoGrid"
+              Grid.Row="0"
+              Grid.RowSpan="2"
+              Grid.Column="2"
+              >
+            <DockPanel VerticalAlignment="Top">
+                <Image x:Name="RightLogoImage"
+                       gif:ImageBehavior.AnimatedSource="Data/Pictures/twittergif.gif"
+                       gif:ImageBehavior.AutoStart="False"
+                       Height="auto"
+                       DockPanel.Dock="Top">
+                </Image>
+
+                <TextBlock Text="Statistics:"
+                           HorizontalAlignment="Center"
+                           DockPanel.Dock="Top">
+                </TextBlock>
+                <DockPanel x:Name="statisticsdockpanel" 
+                           HorizontalAlignment="Left"
+                           DockPanel.Dock="Top"
+                           >
+                    <DockPanel x:Name="StatsStateIndex"
+                               DockPanel.Dock="Top">
+                        <Label Content="State index:" 
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Top"/>
+                        <TextBlock x:Name="indexBlock"
+                                   DockPanel.Dock="Right"
+                                   TextWrapping="Wrap" 
+                                   VerticalAlignment="Center"
+                                   Width="auto"/>
+                    </DockPanel>
+                    <DockPanel x:Name="StatsNegativeTweet"
+                               DockPanel.Dock="Top">
+                        <Label Content="Value of the most negative tweet:"
+                               VerticalAlignment="Top"/>
+                        <TextBlock x:Name="mostNegativeBlock"
+                                   DockPanel.Dock="Right"
+                                   TextWrapping="Wrap" 
+                                   VerticalAlignment="Center" 
+                                   Width="auto"/>
+                    </DockPanel>
+                    <DockPanel x:Name="StatsPositiveTweet"
+                               DockPanel.Dock="Top">
+                        <Label Content="Value of the most positive tweet:" 
+                               VerticalAlignment="Top"/>
+                        <TextBlock x:Name="mostPositiveBlock"
+                               HorizontalAlignment="Left" 
+                               TextWrapping="Wrap"
+                               VerticalAlignment="Center" 
+                               Width="auto"/>
+                    </DockPanel>
+                </DockPanel>
+                <DockPanel x:Name="ColorLegend"
+                           DockPanel.Dock="Top"
+                           Margin="0 50">
+                    <TextBlock Text="MoodLevel Scale"
+                               VerticalAlignment="Center"
+                               DockPanel.Dock="Top"
+                               Height="auto"
+                               Margin="0 10"
+                               HorizontalAlignment="Center"/>
+                    <Border Background="DarkBlue"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Very happy"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="Blue"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Happy"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="White"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="LightBlue"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Feels good"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="Gray"
+                            CornerRadius="20"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="No Info"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="White"
+                            CornerRadius="20"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Neutral"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="Yellow"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Not so happy"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="Orange"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Unhappy"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                    <Border Background="Red"
+                            CornerRadius="20"
+                            DockPanel.Dock="Top"
+                            Height="30"
+                            >
+                        <TextBlock Text="Hate content"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   ></TextBlock>
+                    </Border>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+        <Grid x:Name="BottomTimePanelGrid"
+              Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
+              HorizontalAlignment="Center"
+              >
+            <TextBlock x:Name="BottomRightsText"
+                       Text="The project was created by 4 glorious guys: Me and three friends of mine"
+                       FontSize="21"
+                       VerticalAlignment="Center"
+                       />
+        </Grid>
     </Grid>
 </Window>
