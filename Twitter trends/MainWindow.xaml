@@ -280,7 +280,7 @@
                     </Border>
                     <Border Background="Red"
                             DockPanel.Dock="Top"
-                            Height="35"
+                            Height="40"
                             >
                         <TextBlock Text="Hate content"
                                    TextWrapping="Wrap"
