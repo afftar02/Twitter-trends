@@ -114,9 +114,9 @@ namespace Twitter_trends
                 if (temp == 0) return Brushes.White;
                 else if (temp > 0)
                 {
-                    if (temp <= 0.5) return Brushes.LightBlue;
-                    else if (temp <= 0.75) return Brushes.Blue;
-                    else return Brushes.DarkBlue;
+                    if (temp <= 0.5) return Brushes.GreenYellow;
+                    else if (temp <= 0.75) return Brushes.LimeGreen;
+                    else return Brushes.ForestGreen;
                 }
                 else
                 {
@@ -134,9 +134,9 @@ namespace Twitter_trends
             if (temp == 0) { return Brushes.White; }
             else if (temp > 0)
             {
-                if (temp <= 0.5) { return Brushes.LightBlue; }
-                else if (temp <= 0.75) { return Brushes.Blue; }
-                else { return Brushes.DarkBlue; }
+                if (temp <= 0.5) { return Brushes.GreenYellow; }
+                else if (temp <= 0.75) { return Brushes.LimeGreen; }
+                else { return Brushes.ForestGreen; }
             }
             else
             {
