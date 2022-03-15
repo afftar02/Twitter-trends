@@ -106,6 +106,10 @@
     </ApplicationDefinition>
     <Compile Include="TweetsReader.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\Polygon.cs" />
+    <Compile Include="Models\State.cs" />
+    <Compile Include="Services\Parsers\StatesParser.cs" />
     <Compile Include="Tweet.cs" />
     <Compile Include="TweetParams.cs" />
     <Compile Include="TweetParser.cs" />
