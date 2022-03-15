@@ -31,11 +31,15 @@ namespace Twitter_trends
 		{
 			if (line[0] != START_OF_LINE)
 			{
-				throw new Exception("Fuck my life");
+				throw new TwitterTrendsException("Invalid data for tweets");
 			}
 			string[] splittedLine = line.Split(SPLITTER);
 			string date = splittedLine[1].Substring(1, DATE_TIME_LENGTH);
 			string message = splittedLine[1].Substring(20, splittedLine[1].Length-DATE_TIME_LENGTH-1);
+			message = Regex.Replace(message, @"http[^\s]+", ",");
+			message = Regex.Replace(message, @"[\,\.\-\!]", (m) => " " + m + " ");
+			Console.WriteLine(date);
+			Console.WriteLine(message);
 			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), message);
 		}
 	}

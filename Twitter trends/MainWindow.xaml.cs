@@ -40,6 +40,8 @@ namespace Twitter_trends
         public MainWindow()
         {
             InitializeComponent();
+            Tweet tweet = TweetParser.Parse("[42.38884279, -83.33090463] _ 2014-02-16 03:14:30 @TheMattEspinosa: First poop in Cali oh yeah http://t.co/4G6xvUtSY5");
+            tweet.Out();
             //this.Loaded += MainWindow_Loaded;
         }
         //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
