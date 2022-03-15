@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\Readers\StatesReader.cs" />
     <Compile Include="TweetsReader.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Sentiments.cs" />
