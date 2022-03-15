@@ -42,6 +42,7 @@ namespace Twitter_trends
             InitializeComponent();
             //this.Loaded += MainWindow_Loaded;
         }
+
         //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         //{
 

@@ -106,6 +106,9 @@
     </ApplicationDefinition>
     <Compile Include="TweetsReader.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="Sentiments.cs" />
+    <Compile Include="SentimentsParser.cs" />
+    <Compile Include="SentimentsReader.cs" />
     <Compile Include="Tweet.cs" />
     <Compile Include="TweetParams.cs" />
     <Compile Include="TweetParser.cs" />
