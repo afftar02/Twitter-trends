@@ -105,6 +105,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Location.cs" />
+    <Compile Include="Models\Point.cs" />
+    <Compile Include="Models\Polygon.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Services\Parsers\StatesParser.cs" />
     <Compile Include="Tweet.cs" />
     <Compile Include="TweetParser.cs" />
@@ -165,9 +168,7 @@
     <Resource Include="Data\Resources\tweets\texas_tweets2014.txt" />
     <Resource Include="Data\Resources\tweets\weekend_tweets2014.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

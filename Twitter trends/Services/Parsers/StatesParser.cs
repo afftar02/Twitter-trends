@@ -15,13 +15,8 @@ namespace Twitter_trends.Services.Parsers
             string jsonString = File.ReadAllText(path);
             jsonString = Regex.Replace(jsonString, @"[^\S\r\n]?[\[\]\:]?", "").Replace("{", "").Replace("}", "").Replace(",", " ");
             jsonString = Regex.Replace(jsonString, @"[\r\n]+", "\n").Replace("\"", "").Trim();
-
-            string state_name = jsonString.Split('\n')[0];
-            string state_info = "";
-            jsonString = jsonString.Remove(0, 3);
-
            
-            //Console.WriteLine(jsonString);
+            Console.WriteLine(jsonString);
         }
     }
 }
