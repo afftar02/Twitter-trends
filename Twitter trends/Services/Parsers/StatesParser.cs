@@ -11,9 +11,8 @@ namespace Twitter_trends.Services.Parsers
 {
     public static class StatesParser
     {
-        public static List<State> Parse(string path)
+        public static List<State> Parse(string jsonString)
         {
-            string jsonString = File.ReadAllText(path);
             jsonString = Regex.Replace(jsonString, @"[^\S\r\n]?[\[\]\:]?", "").Replace("{", "").Replace("}", "").Replace(",", " ");
             jsonString = Regex.Replace(jsonString, @"[\r\n]+", "\n").Replace("\"", "").Trim();
 
