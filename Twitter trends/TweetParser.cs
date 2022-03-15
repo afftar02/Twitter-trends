@@ -11,20 +11,31 @@ namespace Twitter_trends
 	class TweetParser
 	{
 
-		private static char SPLITTER = '_';
+		private static readonly char SPLITTER = '_';
 
-		private static char COMMA = ',';
+		private static readonly string COMMA = ",";
 
-		private static int DATE_TIME_LENGTH = 19;
+		private static readonly int DATE_TIME_LENGTH = 19;
 
-		private static char START_OF_LINE = '[';
+		private static readonly char START_OF_LINE = '[';
+
+		private static readonly string SPACE = " ";
+
+		private static readonly string REGEX_LINK_FIND = @"http[^\s]+";
+
+		private static readonly string REGEX_PUNCTUATION_FIND = @"[\,\.\-\!]";
 
 		private static Location LocationParser(string line)
 		{
 			line = line.Substring(1, line.Length - 3);
-			string[] location = line.Split(COMMA);
+			string[] location = line.Split(COMMA.ToCharArray()[0]);
 			return new Location(double.Parse(location[0], CultureInfo.InvariantCulture),
 				double.Parse(location[1].Substring(1,location[1].Length-1), CultureInfo.InvariantCulture));
+		}
+
+		private static List<string> MessageParser(string message)
+		{
+			return new List<string>(message.Split(SPACE.ToCharArray()[0]));
 		}
 
 		public static Tweet Parse(string line)
@@ -36,11 +47,12 @@ namespace Twitter_trends
 			string[] splittedLine = line.Split(SPLITTER);
 			string date = splittedLine[1].Substring(1, DATE_TIME_LENGTH);
 			string message = splittedLine[1].Substring(20, splittedLine[1].Length-DATE_TIME_LENGTH-1);
-			message = Regex.Replace(message, @"http[^\s]+", ",");
-			message = Regex.Replace(message, @"[\,\.\-\!]", (m) => " " + m + " ");
+			message = Regex.Replace(message, REGEX_LINK_FIND, COMMA);
+			message = Regex.Replace(message, REGEX_PUNCTUATION_FIND, (m) => SPACE + m + SPACE);
+			message = message.Trim();
 			Console.WriteLine(date);
 			Console.WriteLine(message);
-			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), message);
+			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), MessageParser(message));
 		}
 	}
 }

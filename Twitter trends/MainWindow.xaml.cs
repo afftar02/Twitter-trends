@@ -41,9 +41,9 @@ namespace Twitter_trends
         {
             StatesParser.Parse(@"..\..\Data\Resources\states\states.json");
             InitializeComponent();
-            
             //this.Loaded += MainWindow_Loaded;
         }
+
         //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         //{
 

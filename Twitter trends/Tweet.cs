@@ -10,22 +10,27 @@ namespace Twitter_trends
 	{
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
-		public string message { get; }
+		public List<string> message { get; }
 
 		public Tweet() { }
-		public Tweet(Location location, DateTime timeOfCreation, string message)
+		public Tweet(Location location, DateTime timeOfCreation, List<string> message)
 		{
 			this.location = location;
 			this.timeOfCreation = timeOfCreation;
 			this.message = message;
 		}
 
-		public void Out()
+		public void Out() // test method, should be removed
 		{
 			Console.WriteLine(location.latitude);
 			Console.WriteLine(location.longtitude);
 			Console.WriteLine(timeOfCreation.ToString());
-			Console.WriteLine(message);
+			string mess = "";
+			for(int i = 0; i < message.Count; i++)
+			{
+				mess += message[i] + ' ';
+			}
+			Console.WriteLine(mess);
 		}
 	}
 }
