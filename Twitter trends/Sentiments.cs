@@ -8,17 +8,23 @@ namespace Twitter_trends
 {
     class Sentiments
     {
-        public string Content { get; }
-        public int ContentWeight { get; }
+        public Dictionary<string, double> sentiments = new Dictionary<string, double>();
         public Sentiments() { }
-        public Sentiments(string content, int weight)
+        public Sentiments(string content, double weight)
         {
-            this.Content = content;
-            this.ContentWeight = weight;
+            sentiments.Add(content, weight);
         }
         public void Output()
         {
-            Console.WriteLine("Content: " + '"' + Content + '"' + " Weight: " + ContentWeight);
+            foreach (var item in sentiments)
+            Console.WriteLine($"Content: {item.Key} Weight: {item.Value}");
+        }
+
+        public double GetWeight(string word)
+        {
+            double weight = 0;
+            this.sentiments.TryGetValue(word, out weight);
+            return weight;
         }
     }
 }

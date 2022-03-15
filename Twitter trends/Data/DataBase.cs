@@ -22,11 +22,12 @@ namespace Twitter_trends.Data
 
         private List<Tweet> tweets;
         private List<TweetParams> tweetsParams;
-
+        private Sentiments sentiments;
         public DataBase()
 		{
             this.tweets = new List<Tweet>();
             this.tweetsParams = new List<TweetParams>();
+            this.sentiments= new Sentiments();
 		}
 
         public void addTweet(Tweet tweet)
