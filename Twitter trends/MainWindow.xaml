@@ -10,7 +10,7 @@
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         xmlns:gmaps="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
         xmlns:local="clr-namespace:Twitter_trends"
@@ -154,6 +154,7 @@
 
                 <TextBlock Text="Statistics:"
                            HorizontalAlignment="Center"
+                           Foreground="White"
                            DockPanel.Dock="Top">
                 </TextBlock>
                 <DockPanel x:Name="statisticsdockpanel" 
@@ -164,30 +165,36 @@
                                DockPanel.Dock="Top">
                         <Label Content="State index:" 
                                HorizontalAlignment="Left"
+                               Foreground="White"
                                VerticalAlignment="Top"/>
                         <TextBlock x:Name="indexBlock"
                                    DockPanel.Dock="Right"
                                    TextWrapping="Wrap" 
+                                   Foreground="White"
                                    VerticalAlignment="Center"
                                    Width="auto"/>
                     </DockPanel>
                     <DockPanel x:Name="StatsNegativeTweet"
                                DockPanel.Dock="Top">
                         <Label Content="Value of the most negative tweet:"
+                               Foreground="White"
                                VerticalAlignment="Top"/>
                         <TextBlock x:Name="mostNegativeBlock"
                                    DockPanel.Dock="Right"
                                    TextWrapping="Wrap" 
+                                   Foreground="White"
                                    VerticalAlignment="Center" 
                                    Width="auto"/>
                     </DockPanel>
                     <DockPanel x:Name="StatsPositiveTweet"
                                DockPanel.Dock="Top">
                         <Label Content="Value of the most positive tweet:" 
+                               Foreground="White"
                                VerticalAlignment="Top"/>
                         <TextBlock x:Name="mostPositiveBlock"
                                HorizontalAlignment="Left" 
                                TextWrapping="Wrap"
+                                   Foreground="White"
                                VerticalAlignment="Center" 
                                Width="auto"/>
                     </DockPanel>
@@ -200,6 +207,7 @@
                                DockPanel.Dock="Top"
                                Height="auto"
                                Margin="0 10"
+                               Foreground="White"
                                HorizontalAlignment="Center"/>
                     <Border Background="ForestGreen"
                             DockPanel.Dock="Top"
