@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Twitter_trends.Data;
 //using Twitter_trends.Data;
 //using Twitter_trends.Models;
 //using Twitter_trends.Models.Parsers;
@@ -39,8 +40,13 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
-            StatesParser.Parse(@"..\..\Data\Resources\states\states.json");
+            
             InitializeComponent();
+            Tweet tweet = TweetParser.Parse("[33.88428178, -118.10053281]	_	2014-02-16 03:36:11	I'm having fun, watching the 9s. from my laptop here. in Cali!! Feel like I'm at home haha #warriornation.");
+            tweet.Out();
+            DataBase dataBase = new DataBase();
+            var weight = dataBase.caclulateHappines(tweet);
+            Console.WriteLine(weight);
             //this.Loaded += MainWindow_Loaded;
         }
 
