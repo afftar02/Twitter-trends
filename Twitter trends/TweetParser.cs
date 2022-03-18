@@ -21,6 +21,8 @@ namespace Twitter_trends
 
 		private static readonly string SPACE = " ";
 
+		private static readonly string REGEX_MULTIPLE_SPACES = @"\s+";
+
 		private static readonly string REGEX_LINK_FIND = @"http[^\s]+";
 
 		private static readonly string REGEX_PUNCTUATION_FIND = @"[\,\.\-\!]";
@@ -49,6 +51,7 @@ namespace Twitter_trends
 			string message = splittedLine[1].Substring(20, splittedLine[1].Length-DATE_TIME_LENGTH-1);
 			message = Regex.Replace(message, REGEX_LINK_FIND, COMMA);
 			message = Regex.Replace(message, REGEX_PUNCTUATION_FIND, (m) => SPACE + m + SPACE);
+			message = Regex.Replace(message, REGEX_MULTIPLE_SPACES, SPACE);
 			message = message.Trim();
 			Console.WriteLine(date);
 			Console.WriteLine(message);

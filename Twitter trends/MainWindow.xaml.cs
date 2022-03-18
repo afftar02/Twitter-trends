@@ -39,6 +39,7 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
+           
             InitializeComponent();
             //this.Loaded += MainWindow_Loaded;
         }
