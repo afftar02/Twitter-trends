@@ -24,7 +24,7 @@ using System.Windows.Shapes;
 //using Twitter_trends.Models;
 //using Twitter_trends.Models.Parsers;
 //using Twitter_trends.Services.Extra;
-//using Twitter_trends.Services.Parsers;
+using Twitter_trends.Services.Parsers;
 using WpfAnimatedGif;
 using Brushes = System.Windows.Media.Brushes;
 using Path = System.Windows.Shapes.Path;
