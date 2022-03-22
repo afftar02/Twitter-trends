@@ -35,9 +35,22 @@ namespace Twitter_trends
 				double.Parse(location[1].Substring(1,location[1].Length-1), CultureInfo.InvariantCulture));
 		}
 
+		private static void DeleteSpaces(ref List<string> messageList)
+        {
+            for (int i = 0; i < messageList.Count; i++)
+            {
+                if (messageList[i] == string.Empty)
+                {
+					messageList.RemoveAt(i);
+                }
+            }
+        }
+
 		private static List<string> MessageParser(string message)
 		{
-			return new List<string>(message.Split(SPACE.ToCharArray()[0]));
+			List<string> splittedMessage = new List<string>(message.Split(SPACE.ToCharArray()[0]));
+			DeleteSpaces(ref splittedMessage);
+			return splittedMessage;
 		}
 
 		public static Tweet Parse(string line)
@@ -55,6 +68,7 @@ namespace Twitter_trends
 			message = message.Trim();
 			Console.WriteLine(date);
 			Console.WriteLine(message);
+			List<string> testParsedList = MessageParser(message);
 			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), MessageParser(message));
 		}
 	}
