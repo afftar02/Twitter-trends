@@ -12,7 +12,7 @@ namespace Twitter_trends
         public Sentiments() 
         {
             SentimentsReader reader = new SentimentsReader();
-            string fullLine = reader.Read("sentiments.txt");
+            string fullLine = reader.Read(@"..\..\Data\Resources\states\sentiments.txt");
             SentimentsParser parser = new SentimentsParser();
         }
         public Sentiments(string content, double weight)
