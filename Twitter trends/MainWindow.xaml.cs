@@ -45,13 +45,22 @@ namespace Twitter_trends
 		public MainWindow()
 		{
 			InitializeComponent();
-			string allLines = TxtReader.Read(@"..\..\Data\Resources\tweets\cali_tweets2014.txt");
-			string[] lines = allLines.Split('\n');
-			for (int i = 0; i < lines.Length; i++)
-			{
-				Tweet tweet = TweetParser.Parse(lines[i]);
-				Console.Write(tweet.happiness.ToString() + " ; ");
-			}
+			Console.WriteLine("Cali:");
+			DataBase database0 = new DataBase(@"..\..\Data\Resources\tweets\cali_tweets2014.txt");
+			Console.WriteLine("Family:");
+			DataBase database1 = new DataBase(@"..\..\Data\Resources\tweets\family_tweets2014.txt");
+			Console.WriteLine("Football:");
+			DataBase database2 = new DataBase(@"..\..\Data\Resources\tweets\football_tweets2014.txt");
+			Console.WriteLine("High school:");
+			DataBase database3 = new DataBase(@"..\..\Data\Resources\tweets\high_school_tweets2014.txt");
+			Console.WriteLine("Movie:");
+			DataBase database4 = new DataBase(@"..\..\Data\Resources\tweets\movie_tweets2014.txt");
+			Console.WriteLine("Shopping:");
+			DataBase database5 = new DataBase(@"..\..\Data\Resources\tweets\shopping_tweets2014.txt");
+			Console.WriteLine("Texas:");
+			DataBase database6 = new DataBase(@"..\..\Data\Resources\tweets\texas_tweets2014.txt");
+			Console.WriteLine("Weekend:");
+			DataBase database7 = new DataBase(@"..\..\Data\Resources\tweets\weekend_tweets2014.txt");
 
 			//this.Loaded += MainWindow_Loaded;
 		}

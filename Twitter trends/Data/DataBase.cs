@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Twitter_trends.Models;
+using Twitter_trends.Services.Parsers;
+using Twitter_trends.Services.Readers;
 
 namespace Twitter_trends.Data
 {
@@ -26,10 +28,54 @@ namespace Twitter_trends.Data
 
         private Dictionary<State, double> statesHappiness;
 
-        public DataBase()
+        private static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
+
+        private static readonly char END_OF_LINE = '\n';
+
+        private void FillTweetsList(string filePath)
 		{
             this.tweets = new List<Tweet>();
+            string []lines = TxtReader.Read(filePath).Split(END_OF_LINE);
+            foreach (string line in lines)
+            {
+                tweets.Add(TweetParser.Parse(line));
+			}
+
+        }
+
+        private void FillStatesHappiness()
+		{
             this.statesHappiness = new Dictionary<State, double>();
+            for(int i = 0; i < states.Count; i++)
+			{
+                double happiness = 0.0;
+                int numberOfTweetsInState = 0;
+                for(int j = 0; j < tweets.Count; j++)
+				{
+                    if(tweets[j].locationState == states[i].Name)
+					{
+                        happiness += tweets[j].happiness;
+                        numberOfTweetsInState++;
+					}
+				}
+				if (numberOfTweetsInState != 0)
+				{
+                    statesHappiness.Add(states[i], happiness / numberOfTweetsInState);
+				}
+				else
+				{
+                    statesHappiness.Add(states[i], 0);
+				}
+                Console.WriteLine(states[i].Name + ' ' + statesHappiness[states[i]].ToString());
+			}
+            
+        }
+        public DataBase(string filePath)
+		{
+            
+            
+            FillTweetsList(filePath);
+            FillStatesHappiness();
 		}
 
         public void addTweet(Tweet tweet)
