@@ -8,13 +8,14 @@ namespace Twitter_trends
 {
 	class Location
 	{
-		public double longtitude { get; }
-		public double latitude { get; }
 
-		public Location(double longtitude, double latitude)
+		public double latitude { get; } //x
+		public double longtitude { get; } //y
+		
+		public Location(double latitude, double longtitude)
 		{
-			this.longtitude = longtitude;
 			this.latitude = latitude;
+			this.longtitude = longtitude;
 		}
 	}
 }

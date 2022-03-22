@@ -38,8 +38,7 @@ namespace Twitter_trends
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
-           
+        {           
             InitializeComponent();
             //this.Loaded += MainWindow_Loaded;
         }
