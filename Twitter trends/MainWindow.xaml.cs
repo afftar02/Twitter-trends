@@ -50,6 +50,8 @@ namespace Twitter_trends
 
         }
         Country country;
+
+        DataBase dataBase = new DataBase();
         private void Loaded_gmap(object sender, RoutedEventArgs e)
         {
             gmap.Bearing = 0;
@@ -77,7 +79,7 @@ namespace Twitter_trends
         private void DrawStates()
         {
             gmap.Markers.Clear();
-            foreach (var state in DataBase.GetInstance().Country.States)
+            foreach (var state in DataBase.states)
             {
                 foreach (var polygon in state.Polygons)
                 {
@@ -179,47 +181,47 @@ namespace Twitter_trends
 
                 case "Cali":
                     {
-                        path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\cali_tweets2014.txt";
                         break;
                     }
                 case "Family":
                     {
-                        path = @"..\..\..\Data\Tweets\family_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\family_tweets2014.txt";
                         break;
                     }
                 case "Football":
                     {
-                        path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\football_tweets2014.txt";
                         break;
                     }
                 case "School":
                     {
-                        path = @"..\..\..\Data\Tweets\high_school_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\high_school_tweets2014.txt";
                         break;
                     }
                 case "Movie":
                     {
-                        path = @"..\..\..\Data\Tweets\movie_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\movie_tweets2014.txt";
                         break;
                     }
                 case "Shopping":
                     {
-                        path = @"..\..\..\Data\Tweets\shopping_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\shopping_tweets2014.txt";
                         break;
                     }
                 case "Snow":
                     {
-                        path = @"..\..\..\Data\Tweets\snow_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\snow_tweets2014.txt";
                         break;
                     }
                 case "Texas":
                     {
-                        path = @"..\..\..\Data\Tweets\texas_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\texas_tweets2014.txt";
                         break;
                     }
                 case "Weekend":
                     {
-                        path = @"..\..\..\Data\Tweets\weekend_tweets2014.txt";
+                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\weekend_tweets2014.txt";
                         break;
                     }
             }
@@ -228,13 +230,10 @@ namespace Twitter_trends
             var controller = ImageBehavior.GetAnimationController(RightLogoImage);
             controller.Play();
 
-            DataBase.GetInstance().SetPathTweetFile(path);
-            await Task.Run(DataBase.GetInstance().StartNewState);
-            country = DataBase.GetInstance().Country;
+            dataBase.Path = path;
+            await Task.Run(dataBase.StartDatabase);
+            //country = DataBase.Country;
             DrawStates();
-
-            //для проверки
-            //await Task.Delay(10000);
 
             controller.Pause();
             controller.GotoFrame(0);

@@ -32,6 +32,9 @@ namespace Twitter_trends.Data
 
         private static readonly char END_OF_LINE = '\n';
 
+        public string Path { get; set; }
+
+
         private void FillTweetsList(string filePath)
 		{
             this.tweets = new List<Tweet>();
@@ -70,11 +73,9 @@ namespace Twitter_trends.Data
 			}
             
         }
-        public DataBase(string filePath)
+        public async Task StartDatabase()
 		{
-            
-            
-            FillTweetsList(filePath);
+            FillTweetsList(Path);
             FillStatesHappiness();
 		}
 
@@ -93,7 +94,7 @@ namespace Twitter_trends.Data
             double happiness;
             if(!statesHappiness.TryGetValue(state, out happiness))
 			{
-                throw new TwitterTrendsException("Coudn't find state" + state.Name + " in states.");
+                throw new TwitterTrendsException("Couldn't find state" + state.Name + " in states.");
 			}
             return happiness;
 		}

@@ -13,9 +13,6 @@ namespace Twitter_trends.Models
         public List<Polygon> Polygons { get => polygons; set => polygons = value; }
         public string Name { get => name; set => name = value; }
 
-        List<Polygon> polygons = new List<Polygon>();
-
-        internal List<Polygon> Polygons { get => polygons; set => polygons = value; }
         private List<Tweet> tweets = new List<Tweet>();
         public List<Tweet> Tweets { get => tweets; set => tweets = value; }
         private double totalWeight;

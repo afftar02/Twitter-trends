@@ -104,7 +104,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\Readers\StatesReader.cs" />
-    <Compile Include="Location.cs" />
     <Compile Include="Sentiments.cs" />
     <Compile Include="SentimentsParser.cs" />
     <Compile Include="SentimentsReader.cs" />
@@ -112,7 +111,6 @@
     <Compile Include="Models\Polygon.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Services\Parsers\StatesParser.cs" />
-    <Compile Include="Tweet.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Point.cs" />
