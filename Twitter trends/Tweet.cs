@@ -11,8 +11,8 @@ namespace Twitter_trends
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
 		public List<string> message { get; }
-		private string locationState { get; set; }
-		private double happiness { get; set; }
+		public string locationState { get; set; }
+		public double happiness { get; set; }
 
 		public Tweet() { }
 
@@ -25,7 +25,7 @@ namespace Twitter_trends
 			this.location = location;
 			this.timeOfCreation = timeOfCreation;
 			this.message = message;
-			this.locationState = "US";
+			this.locationState = TweetService.GetStateByLocation(location);
 			this.happiness = TweetService.caclulateHappines(message);
 		}
 

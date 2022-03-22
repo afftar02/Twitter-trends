@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twitter_trends.Models;
+using Twitter_trends.Services.Parsers;
+using Twitter_trends.Services.Readers;
 
 namespace Twitter_trends
 {
-	class TweetService
+	public class TweetService
 	{
 		private static Sentiments sentiments = new Sentiments();
+
+        private static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
 
         public static double caclulateHappines(List<string> message)
         {
@@ -52,6 +57,20 @@ namespace Twitter_trends
                 }
             }
             return weight;
+        }
+        public static string GetStateByLocation(Location loc)
+        {
+            foreach (var state in states)
+            {
+                foreach (var pol in state.Polygons)
+                {
+                    if (Polygon.IsInside(pol, loc))
+                    {
+                        return state.Name;
+                    }
+                }
+            }
+            return "UNKNOWN";
         }
     }
 }

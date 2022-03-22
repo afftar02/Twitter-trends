@@ -67,8 +67,6 @@ namespace Twitter_trends
 			message = Regex.Replace(message, REGEX_MULTIPLE_SPACES, SPACE);
 			message = message.Trim();
 			message = message.ToLower();
-			Console.WriteLine(date);
-			Console.WriteLine(message);
 			List<string> testParsedList = MessageParser(message);
 			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), MessageParser(message));
 		}

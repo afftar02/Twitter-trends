@@ -45,8 +45,22 @@ namespace Twitter_trends
         public MainWindow()
         {
             InitializeComponent();
-            Sentiments sentiments = SentimentsParser.Parse(SentimentsReader.Read(@"..\..\Data\Resources\sentiments\sentiments.txt"));
-            sentiments.Output();
+            string allLines = TxtReader.Read(@"..\..\Data\Resources\tweets\cali_tweets2014.txt");
+            string[] lines = allLines.Split('\n');
+            int num = 0;
+            for(int i = 0; i < lines.Length; i++)
+			{
+                Tweet tweet = TweetParser.Parse(lines[i]);
+                if(tweet.locationState == "UNKNOWN")
+				{
+                    num++;
+                    Console.WriteLine(i);
+                    Console.WriteLine(tweet.location.latitude);
+                    Console.WriteLine(tweet.location.longtitude);
+                }
+                
+			}
+            Console.WriteLine(num);
             //this.Loaded += MainWindow_Loaded;
         }
 

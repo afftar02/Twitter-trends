@@ -16,14 +16,8 @@ namespace Twitter_trends
             foreach (var sentiment in sentiments)
             {
                 string[] parts = sentiment.Split(COMMA);
-                
-                return new Sentiments(parts[0], double.Parse(parts[1], System.Globalization.NumberStyles.AllowLeadingSign |
-                                                                      System.Globalization.NumberStyles.AllowParentheses |
-                                                                      System.Globalization.NumberStyles.AllowLeadingWhite |
-                                                                      System.Globalization.NumberStyles.AllowThousands |
-                                                                      System.Globalization.NumberStyles.AllowDecimalPoint |
-                                                                      System.Globalization.NumberStyles.AllowTrailingWhite));
-                
+
+                return null;
             }
             return null;
         }
