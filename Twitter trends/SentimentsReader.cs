@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends
 {
-    internal class SentimentsReader : IReader
+    internal class SentimentsReader
 	{
 		private static char COMMA = ',';
-		public string Read(string filePath)
+		public static string Read(string filePath)
         {
 			try
 			{

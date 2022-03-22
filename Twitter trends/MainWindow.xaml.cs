@@ -45,21 +45,8 @@ namespace Twitter_trends
         public MainWindow()
         {
             InitializeComponent();
-            Location loc = new Location(-97.333861, 31.934760);
-            Tweet tw = new Tweet(loc);
-            StatesParser.Parse(@"..\..\Data\Resources\states\states.json");
-            List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
-            foreach (var item in states)
-            {
-                foreach (var pol in item.Polygons)
-                {
-                    if (Polygon.IsInside(pol, tw))
-                    {
-                        Console.WriteLine(item.Name);
-                    }
-                }
-            }
-            Console.WriteLine("End");
+            Sentiments sentiments = SentimentsParser.Parse(SentimentsReader.Read(@"..\..\Data\Resources\sentiments\sentiments.txt"));
+            sentiments.Output();
             //this.Loaded += MainWindow_Loaded;
         }
 

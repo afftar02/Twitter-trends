@@ -11,14 +11,15 @@ namespace Twitter_trends
         public Dictionary<string, double> sentiments = new Dictionary<string, double>();
         public Sentiments() 
         {
-            SentimentsReader reader = new SentimentsReader();
-            string fullLine = reader.Read(@"..\..\Data\Resources\states\sentiments.txt");
-            SentimentsParser parser = new SentimentsParser();
+            string allLines = SentimentsReader.Read(@"..\..\Data\Resources\sentiments\sentiments.txt");
+            string [] lines = allLines.Split('\n');
+            foreach (string line in lines)
+			{
+                // TODO zarbaf
+			}
+            
         }
-        public Sentiments(string content, double weight)
-        {
-            sentiments.Add(content, weight);
-        }
+
         public void Output()
         {
             foreach (var item in sentiments)
