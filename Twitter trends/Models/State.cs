@@ -10,7 +10,6 @@ namespace Twitter_trends.Models
     {
         private string name;
         private List<Polygon> polygons = new List<Polygon>();
-
         public List<Polygon> Polygons { get => polygons; set => polygons = value; }
         public string Name { get => name; set => name = value; }
 

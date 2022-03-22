@@ -37,264 +37,256 @@ using Path = System.Windows.Shapes.Path;
 
 namespace Twitter_trends
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            string allLines = TxtReader.Read(@"..\..\Data\Resources\tweets\cali_tweets2014.txt");
-            string[] lines = allLines.Split('\n');
-            int num = 0;
-            for(int i = 0; i < lines.Length; i++)
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
+			string allLines = TxtReader.Read(@"..\..\Data\Resources\tweets\cali_tweets2014.txt");
+			string[] lines = allLines.Split('\n');
+			for (int i = 0; i < lines.Length; i++)
 			{
-                Tweet tweet = TweetParser.Parse(lines[i]);
-                if(tweet.locationState == "UNKNOWN")
-				{
-                    num++;
-                    Console.WriteLine(i);
-                    Console.WriteLine(tweet.location.latitude);
-                    Console.WriteLine(tweet.location.longtitude);
-                }
-                
+				Tweet tweet = TweetParser.Parse(lines[i]);
+				Console.Write(tweet.happiness.ToString() + " ; ");
 			}
-            Console.WriteLine(num);
-            //this.Loaded += MainWindow_Loaded;
-        }
 
-        //private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        //{
+			//this.Loaded += MainWindow_Loaded;
+		}
 
-        //    //data
-        //    //загрузка вьюмодел для кнопок меню
-        //    //MainWindowViewModel viewModel = new MainWindowViewModel();
-        //    //this.DataContext = viewModel;
+		//private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+		//{
 
-
-        //}
-        //Country country;
-        //private void Loaded_gmap(object sender, RoutedEventArgs e)
-        //{
-        //    gmap.Bearing = 0;
-        //    gmap.CanDragMap = true;
-        //    gmap.DragButton = MouseButton.Left;
+		//    //data
+		//    //загрузка вьюмодел для кнопок меню
+		//    //MainWindowViewModel viewModel = new MainWindowViewModel();
+		//    //this.DataContext = viewModel;
 
 
-        //    gmap.MaxZoom = 20;
-        //    gmap.MinZoom = 3;
-
-        //    gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
-
-        //    gmap.ShowTileGridLines = false;
-        //    gmap.Zoom = 2;
-        //    gmap.ShowCenter = false;
-
-        //    gmap.MapProvider = GMapProviders.BingMap;
-        //    GMaps.Instance.Mode = AccessMode.ServerOnly;
-        //    gmap.Position = new PointLatLng(51.39920565355378, -108.63281250000001);
+		//}
+		//Country country;
+		//private void Loaded_gmap(object sender, RoutedEventArgs e)
+		//{
+		//    gmap.Bearing = 0;
+		//    gmap.CanDragMap = true;
+		//    gmap.DragButton = MouseButton.Left;
 
 
-        //    GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
-        //    GMapProvider.WebProxy.Credentials = CredentialCache.DefaultCredentials;
-        //}
-        //private void DrawStates()
-        //{
-        //    gmap.Markers.Clear();
-        //    foreach (var state in Database.GetInstance().Country.States)
-        //    {
-        //        foreach (var polygon in state.Polygons)
-        //        {
-        //            List<PointLatLng> pointlatlang = new List<PointLatLng>();
-        //            GMapPolygon pol = new GMapPolygon(pointlatlang);
-        //            foreach (var point in polygon.Points)
-        //            {
-        //                pointlatlang.Add(new PointLatLng(point.X, point.Y));
-        //            }
-        //            pol.Points = pointlatlang;
-        //            gmap.RegenerateShape(pol);
-        //            (pol.Shape as Path).Fill = GetColorByMood(state);
-        //            (pol.Shape as Path).Stroke = Brushes.Blue;
-        //            (pol.Shape as Path).StrokeThickness = 1.5;
-        //            (pol.Shape as Path).Effect = null;
-        //            gmap.Markers.Add(pol);
-        //        }
+		//    gmap.MaxZoom = 20;
+		//    gmap.MinZoom = 3;
 
-        //        DrawMarkers(state);
+		//    gmap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionWithoutCenter;
 
-        //    }
+		//    gmap.ShowTileGridLines = false;
+		//    gmap.Zoom = 2;
+		//    gmap.ShowCenter = false;
 
-        //}
-        //private void listViewItemClose_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Application.Current.Shutdown();
-        //}
-
-        //private SolidColorBrush GetColorByMood(State currentState)
-        //{
-        //    double temp = currentState.TotalWeight;
-        //    if (currentState.isMoodDefined)
-        //    {
-        //        if (temp == 0) return Brushes.White;
-        //        else if (temp > 0)
-        //        {
-        //            if (temp <= 0.5) return Brushes.LightBlue;
-        //            else if (temp <= 0.75) return Brushes.Blue;
-        //            else return Brushes.DarkBlue;
-        //        }
-        //        else
-        //        {
-        //            if (temp >= -0.5) return Brushes.Yellow;
-        //            else if (temp >= -0.75) return Brushes.Orange;
-        //            else return Brushes.Red;
-        //        }
-        //    }
-        //    return Brushes.Gray;
-        //}
-        //private SolidColorBrush GetColorByTweet(Tweet tweet)
-        //{
-        //    double temp = tweet.MoodWeight;
-
-        //    if (temp == 0) { return Brushes.White; }
-        //    else if (temp > 0)
-        //    {
-        //        if (temp <= 0.5) { return Brushes.LightBlue; }
-        //        else if (temp <= 0.75) { return Brushes.Blue; }
-        //        else { return Brushes.DarkBlue; }
-        //    }
-        //    else
-        //    {
-        //        if (temp >= -0.5) { return Brushes.Yellow; }
-        //        else if (temp >= -0.75) { return Brushes.Orange; }
-        //        else { return Brushes.Red; }
-        //    }
+		//    gmap.MapProvider = GMapProviders.BingMap;
+		//    GMaps.Instance.Mode = AccessMode.ServerOnly;
+		//    gmap.Position = new PointLatLng(51.39920565355378, -108.63281250000001);
 
 
-        //}
-        //private void DrawMarkers(State state)
-        //{
-        //    //   List<Tweet> tweets = TweetParser.Parse(path);
-        //    List<Tweet> tweets = state.Tweets;
-        //    foreach (var tweet in tweets)
-        //    {
-        //        GMapMarker marker = new GMapMarker(new PointLatLng(tweet.PointOnMap.X, tweet.PointOnMap.Y));
-        //        marker.Shape = new Ellipse
-        //        {
-        //            Width = 5,
-        //            Height = 5,
-        //            Fill = GetColorByTweet(tweet),
-        //            ToolTip = "Tweet : " + tweet.TweetMessage + "\n" +
-        //                      "Date : " + tweet.PublicationDate + "\n" +
-        //                      "MoodWeight : " + tweet.MoodWeight
-        //        };
-        //        gmap.Markers.Add(marker);
-        //    }
-        //}
+		//    GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
+		//    GMapProvider.WebProxy.Credentials = CredentialCache.DefaultCredentials;
+		//}
+		//private void DrawStates()
+		//{
+		//    gmap.Markers.Clear();
+		//    foreach (var state in Database.GetInstance().Country.States)
+		//    {
+		//        foreach (var polygon in state.Polygons)
+		//        {
+		//            List<PointLatLng> pointlatlang = new List<PointLatLng>();
+		//            GMapPolygon pol = new GMapPolygon(pointlatlang);
+		//            foreach (var point in polygon.Points)
+		//            {
+		//                pointlatlang.Add(new PointLatLng(point.X, point.Y));
+		//            }
+		//            pol.Points = pointlatlang;
+		//            gmap.RegenerateShape(pol);
+		//            (pol.Shape as Path).Fill = GetColorByMood(state);
+		//            (pol.Shape as Path).Stroke = Brushes.Blue;
+		//            (pol.Shape as Path).StrokeThickness = 1.5;
+		//            (pol.Shape as Path).Effect = null;
+		//            gmap.Markers.Add(pol);
+		//        }
 
-        //private async void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
+		//        DrawMarkers(state);
 
-        //{
-        //    string path = null;
-        //    ComboBoxItem selectedItem = (ComboBoxItem)ComboBoxChooseCountry.SelectedItem;
-        //    string response = selectedItem.Content.ToString();
-        //    switch (response)
-        //    {
+		//    }
 
-        //        case "Cali":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Family":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\family_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Football":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "School":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\high_school_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Movie":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\movie_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Shopping":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\shopping_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Snow":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\snow_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Texas":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\texas_tweets2014.txt";
-        //                break;
-        //            }
-        //        case "Weekend":
-        //            {
-        //                path = @"..\..\..\Data\Tweets\weekend_tweets2014.txt";
-        //                break;
-        //            }
-        //    }
+		//}
+		//private void listViewItemClose_Click(object sender, RoutedEventArgs e)
+		//{
+		//    Application.Current.Shutdown();
+		//}
 
-        //    var controller = ImageBehavior.GetAnimationController(RightLogoImage);
-        //    controller.Play();
+		//private SolidColorBrush GetColorByMood(State currentState)
+		//{
+		//    double temp = currentState.TotalWeight;
+		//    if (currentState.isMoodDefined)
+		//    {
+		//        if (temp == 0) return Brushes.White;
+		//        else if (temp > 0)
+		//        {
+		//            if (temp <= 0.5) return Brushes.LightBlue;
+		//            else if (temp <= 0.75) return Brushes.Blue;
+		//            else return Brushes.DarkBlue;
+		//        }
+		//        else
+		//        {
+		//            if (temp >= -0.5) return Brushes.Yellow;
+		//            else if (temp >= -0.75) return Brushes.Orange;
+		//            else return Brushes.Red;
+		//        }
+		//    }
+		//    return Brushes.Gray;
+		//}
+		//private SolidColorBrush GetColorByTweet(Tweet tweet)
+		//{
+		//    double temp = tweet.MoodWeight;
 
-        //    Database.GetInstance().SetPathTweetFile(path);
-        //    await Task.Run(Database.GetInstance().StartNewState);
-        //    country = Database.GetInstance().Country;
-        //    DrawStates();
-
-        //    controller.Pause();
-        //    controller.GotoFrame(0);
-        //}
-
-        //private void MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-
-        //    PointLatLng clickpoint = new PointLatLng();
-        //    clickpoint = gmap.FromLocalToLatLng((int)Mouse.GetPosition(this).X, (int)Mouse.GetPosition(this).Y);
-        //    Point point = new Point(clickpoint.Lat, clickpoint.Lng);
-        //    Tweet tweet = new Tweet();
-        //    tweet.PointOnMap = point;
+		//    if (temp == 0) { return Brushes.White; }
+		//    else if (temp > 0)
+		//    {
+		//        if (temp <= 0.5) { return Brushes.LightBlue; }
+		//        else if (temp <= 0.75) { return Brushes.Blue; }
+		//        else { return Brushes.DarkBlue; }
+		//    }
+		//    else
+		//    {
+		//        if (temp >= -0.5) { return Brushes.Yellow; }
+		//        else if (temp >= -0.75) { return Brushes.Orange; }
+		//        else { return Brushes.Red; }
+		//    }
 
 
-        //    foreach (var state in country.States)
-        //    {
-        //        foreach (var polygon in state.Polygons)
-        //        {
-        //            if (ExtraFuncs.IsInside(polygon, tweet))
-        //            {
-        //                if (state.Tweets.Count == 0)
-        //                {
-        //                    mostNegativeBlock.Text = "NaN";
-        //                    mostPositiveBlock.Text = "NaN";
-        //                    indexBlock.Text = state.Name.ToString();
+		//}
+		//private void DrawMarkers(State state)
+		//{
+		//    //   List<Tweet> tweets = TweetParser.Parse(path);
+		//    List<Tweet> tweets = state.Tweets;
+		//    foreach (var tweet in tweets)
+		//    {
+		//        GMapMarker marker = new GMapMarker(new PointLatLng(tweet.PointOnMap.X, tweet.PointOnMap.Y));
+		//        marker.Shape = new Ellipse
+		//        {
+		//            Width = 5,
+		//            Height = 5,
+		//            Fill = GetColorByTweet(tweet),
+		//            ToolTip = "Tweet : " + tweet.TweetMessage + "\n" +
+		//                      "Date : " + tweet.PublicationDate + "\n" +
+		//                      "MoodWeight : " + tweet.MoodWeight
+		//        };
+		//        gmap.Markers.Add(marker);
+		//    }
+		//}
 
-        //                }
-        //                else
-        //                {
-        //                    indexBlock.Text = state.Name.ToString();
-        //                    mostNegativeBlock.Text = state.Tweets.Min(u => u.MoodWeight).ToString();
-        //                    mostPositiveBlock.Text = state.Tweets.Max(u => u.MoodWeight).ToString();
-        //                }
+		//private async void ComboBox_Selected(object sender, SelectionChangedEventArgs e)
 
-        //            }
-        //        }
+		//{
+		//    string path = null;
+		//    ComboBoxItem selectedItem = (ComboBoxItem)ComboBoxChooseCountry.SelectedItem;
+		//    string response = selectedItem.Content.ToString();
+		//    switch (response)
+		//    {
 
-        //    }
+		//        case "Cali":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Family":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\family_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Football":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\cali_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "School":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\high_school_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Movie":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\movie_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Shopping":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\shopping_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Snow":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\snow_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Texas":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\texas_tweets2014.txt";
+		//                break;
+		//            }
+		//        case "Weekend":
+		//            {
+		//                path = @"..\..\..\Data\Tweets\weekend_tweets2014.txt";
+		//                break;
+		//            }
+		//    }
 
-        //}
-    }
+		//    var controller = ImageBehavior.GetAnimationController(RightLogoImage);
+		//    controller.Play();
+
+		//    Database.GetInstance().SetPathTweetFile(path);
+		//    await Task.Run(Database.GetInstance().StartNewState);
+		//    country = Database.GetInstance().Country;
+		//    DrawStates();
+
+		//    controller.Pause();
+		//    controller.GotoFrame(0);
+		//}
+
+		//private void MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		//{
+
+		//    PointLatLng clickpoint = new PointLatLng();
+		//    clickpoint = gmap.FromLocalToLatLng((int)Mouse.GetPosition(this).X, (int)Mouse.GetPosition(this).Y);
+		//    Point point = new Point(clickpoint.Lat, clickpoint.Lng);
+		//    Tweet tweet = new Tweet();
+		//    tweet.PointOnMap = point;
+
+
+		//    foreach (var state in country.States)
+		//    {
+		//        foreach (var polygon in state.Polygons)
+		//        {
+		//            if (ExtraFuncs.IsInside(polygon, tweet))
+		//            {
+		//                if (state.Tweets.Count == 0)
+		//                {
+		//                    mostNegativeBlock.Text = "NaN";
+		//                    mostPositiveBlock.Text = "NaN";
+		//                    indexBlock.Text = state.Name.ToString();
+
+		//                }
+		//                else
+		//                {
+		//                    indexBlock.Text = state.Name.ToString();
+		//                    mostNegativeBlock.Text = state.Tweets.Min(u => u.MoodWeight).ToString();
+		//                    mostPositiveBlock.Text = state.Tweets.Max(u => u.MoodWeight).ToString();
+		//                }
+
+		//            }
+		//        }
+
+		//    }
+
+		//}
+	}
 }

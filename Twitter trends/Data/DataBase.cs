@@ -24,12 +24,12 @@ namespace Twitter_trends.Data
 
         private List<Tweet> tweets;
 
-        private List<State> states;
+        private Dictionary<State, double> statesHappiness;
 
         public DataBase()
 		{
             this.tweets = new List<Tweet>();
-            this.states = new List<State>();
+            this.statesHappiness = new Dictionary<State, double>();
 		}
 
         public void addTweet(Tweet tweet)
@@ -42,13 +42,14 @@ namespace Twitter_trends.Data
             return tweets.Count();
 		}
 
-        public Tweet getTweet(int index)
+        public double getStateHappiness(State state)
 		{
-            if(index<0 || index > tweets.Count())
+            double happiness;
+            if(!statesHappiness.TryGetValue(state, out happiness))
 			{
-                throw new TwitterTrendsException("Invalid index for getting tweet in database:" + index);
+                throw new TwitterTrendsException("Coudn't find state" + state.Name + " in states.");
 			}
-            return tweets.ElementAt(index);
+            return happiness;
 		}
 
         

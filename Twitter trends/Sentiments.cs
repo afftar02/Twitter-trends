@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Twitter_trends
             foreach (string line in lines)
 			{
                 string[] parts = line.Split(',');
-                sentiments.Add(parts[0],double.Parse(parts[1]));
+                sentiments.Add(parts[0],double.Parse(parts[1], CultureInfo.InvariantCulture));
 			}
             
         }
