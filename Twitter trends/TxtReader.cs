@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends
 {
-	class TweetsReader : IReader
+	class TxtReader
 	{
-
-		public string Read(string filePath)
+		public static string Read(string filePath)
 		{
 			try
 			{
@@ -24,7 +23,7 @@ namespace Twitter_trends
 			}
 			catch (Exception e)
 			{
-				throw new TwitterTrendsException("Couldn't read from file: " + filePath);
+				throw new TwitterTrendsException("Couldn't read from file: " + e.Message);
 			}
 		}
 	}

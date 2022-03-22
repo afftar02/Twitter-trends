@@ -11,16 +11,20 @@ namespace Twitter_trends
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
 		public List<string> message { get; }
+		private string locationState { get; set; }
+		private double happiness { get; set; }
 
-		public Tweet() { }
+        public Tweet() { }
 		public Tweet(Location location, DateTime timeOfCreation, List<string> message)
 		{
 			this.location = location;
 			this.timeOfCreation = timeOfCreation;
 			this.message = message;
+			this.locationState = "US";
+			this.happiness = TweetService.caclulateHappines(message);
 		}
 
-		public void Out() // test method, should be removed
+		public void Out() // TODO test method, should be removed
 		{
 			Console.WriteLine(location.latitude);
 			Console.WriteLine(location.longtitude);
@@ -33,4 +37,6 @@ namespace Twitter_trends
 			Console.WriteLine(mess);
 		}
 	}
+
+    
 }

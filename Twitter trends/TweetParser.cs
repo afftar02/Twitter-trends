@@ -32,19 +32,19 @@ namespace Twitter_trends
 			line = line.Substring(1, line.Length - 3);
 			string[] location = line.Split(COMMA.ToCharArray()[0]);
 			return new Location(double.Parse(location[0], CultureInfo.InvariantCulture),
-				double.Parse(location[1].Substring(1,location[1].Length-1), CultureInfo.InvariantCulture));
+				double.Parse(location[1].Substring(1, location[1].Length - 1), CultureInfo.InvariantCulture));
 		}
 
 		private static void DeleteSpaces(ref List<string> messageList)
-        {
-            for (int i = 0; i < messageList.Count; i++)
-            {
-                if (messageList[i] == string.Empty)
-                {
+		{
+			for (int i = 0; i < messageList.Count; i++)
+			{
+				if (messageList[i] == string.Empty)
+				{
 					messageList.RemoveAt(i);
-                }
-            }
-        }
+				}
+			}
+		}
 
 		private static List<string> MessageParser(string message)
 		{
@@ -61,11 +61,12 @@ namespace Twitter_trends
 			}
 			string[] splittedLine = line.Split(SPLITTER);
 			string date = splittedLine[1].Substring(1, DATE_TIME_LENGTH);
-			string message = splittedLine[1].Substring(20, splittedLine[1].Length-DATE_TIME_LENGTH-1);
+			string message = splittedLine[1].Substring(20, splittedLine[1].Length - DATE_TIME_LENGTH - 1);
 			message = Regex.Replace(message, REGEX_LINK_FIND, COMMA);
 			message = Regex.Replace(message, REGEX_PUNCTUATION_FIND, (m) => SPACE + m + SPACE);
 			message = Regex.Replace(message, REGEX_MULTIPLE_SPACES, SPACE);
 			message = message.Trim();
+			message = message.ToLower();
 			Console.WriteLine(date);
 			Console.WriteLine(message);
 			List<string> testParsedList = MessageParser(message);
