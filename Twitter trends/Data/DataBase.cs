@@ -28,7 +28,7 @@ namespace Twitter_trends.Data
 
         private Dictionary<State, double> statesHappiness;
 
-        private static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
+        public static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
 
         private static readonly char END_OF_LINE = '\n';
 
