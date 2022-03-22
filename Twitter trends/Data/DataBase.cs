@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twitter_trends.Models;
 
 namespace Twitter_trends.Data
 {
@@ -22,10 +23,13 @@ namespace Twitter_trends.Data
         };
 
         private List<Tweet> tweets;
-        
+
+        private List<State> states;
+
         public DataBase()
 		{
             this.tweets = new List<Tweet>();
+            this.states = new List<State>();
 		}
 
         public void addTweet(Tweet tweet)
@@ -46,5 +50,20 @@ namespace Twitter_trends.Data
 			}
             return tweets.ElementAt(index);
 		}
+
+        public State GetStateByLocation(Location loc)
+        {
+            foreach (var state in states)
+            {
+                foreach (var pol in state.Polygons)
+                {
+                    if (Polygon.IsInside(pol, loc))
+                    {
+                        return state;
+                    }
+                }
+            }
+            return new State();
+        }
     }
 }
