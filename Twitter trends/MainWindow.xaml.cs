@@ -19,12 +19,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
-//using Twitter_trends.Data;
-//using Twitter_trends.Models;
+//using System.Windows.Shapes;
+using Twitter_trends.Data;
+using Twitter_trends.Models;
 //using Twitter_trends.Models.Parsers;
 //using Twitter_trends.Services.Extra;
 using Twitter_trends.Services.Parsers;
+using Twitter_trends.Services.Readers;
 using WpfAnimatedGif;
 using Brushes = System.Windows.Media.Brushes;
 using Path = System.Windows.Shapes.Path;
@@ -39,8 +40,22 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
-            StatesParser.Parse(@"..\..\Data\Resources\states\states.json");
             InitializeComponent();
+            Location loc = new Location(-97.333861, 31.934760);
+            Tweet tw = new Tweet(loc);
+            StatesParser.Parse(@"..\..\Data\Resources\states\states.json");
+            List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
+            foreach (var item in states)
+            {
+                foreach (var pol in item.Polygons)
+                {
+                    if (Polygon.IsInside(pol, tw))
+                    {
+                        Console.WriteLine(item.Name);
+                    }
+                }
+            }
+            Console.WriteLine("End");
             //this.Loaded += MainWindow_Loaded;
         }
 

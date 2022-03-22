@@ -7,9 +7,9 @@ using System.IO;
 
 namespace Twitter_trends.Services.Readers
 {
-    class StatesReader : IReader
+    class StatesReader
     {
-        public string Read(string filePath)
+        public static string Read(string filePath)
         {
 			try
 			{

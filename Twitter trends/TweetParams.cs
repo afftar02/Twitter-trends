@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends
 {
-	class TweetParams
+	public class TweetParams
 	{
 		private string locationState { get; set; }
 		private double happiness { get; set; }
