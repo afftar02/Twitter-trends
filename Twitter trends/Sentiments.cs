@@ -15,7 +15,8 @@ namespace Twitter_trends
             string [] lines = allLines.Split('\n');
             foreach (string line in lines)
 			{
-                // TODO zarbaf
+                string[] parts = line.Split(',');
+                sentiments.Add(parts[0],double.Parse(parts[1]));
 			}
             
         }

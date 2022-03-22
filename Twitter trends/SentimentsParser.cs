@@ -10,16 +10,17 @@ namespace Twitter_trends
     {
         private static char COMMA=',';
 
-        public static Sentiments Parse(string line)
+        public static void Parse(string line, out string sent, out double weight)
         {
-            string[] sentiments=line.Split('\n');
-            foreach (var sentiment in sentiments)
-            {
-                string[] parts = sentiment.Split(COMMA);
-
-                return null;
-            }
-            return null;
+            string[] parts = line.Split(COMMA);
+            sent=parts[0];
+            weight = double.Parse(parts[1]);
+                //return new Sentiments(parts[0], double.Parse(parts[1], System.Globalization.NumberStyles.AllowLeadingSign |
+                //                                                      System.Globalization.NumberStyles.AllowParentheses |
+                //                                                      System.Globalization.NumberStyles.AllowLeadingWhite |
+                //                                                      System.Globalization.NumberStyles.AllowThousands |
+                //                                                      System.Globalization.NumberStyles.AllowDecimalPoint |
+                //                                                      System.Globalization.NumberStyles.AllowTrailingWhite));
         }
     }
 }
