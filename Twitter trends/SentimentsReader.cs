@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace Twitter_trends
 {
     internal class SentimentsReader : IReader
-    {
-        public string Read(string filePath)
+	{
+		private static char COMMA = ',';
+		public string Read(string filePath)
         {
 			try
 			{

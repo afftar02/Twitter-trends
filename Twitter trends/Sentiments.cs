@@ -9,7 +9,12 @@ namespace Twitter_trends
     class Sentiments
     {
         public Dictionary<string, double> sentiments = new Dictionary<string, double>();
-        public Sentiments() { }
+        public Sentiments() 
+        {
+            SentimentsReader reader = new SentimentsReader();
+            string fullLine = reader.Read("sentiments.txt");
+            SentimentsParser parser = new SentimentsParser();
+        }
         public Sentiments(string content, double weight)
         {
             sentiments.Add(content, weight);

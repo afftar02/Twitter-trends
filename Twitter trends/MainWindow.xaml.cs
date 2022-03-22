@@ -40,13 +40,7 @@ namespace Twitter_trends
     {
         public MainWindow()
         {
-            
             InitializeComponent();
-            Tweet tweet = TweetParser.Parse("[33.88428178, -118.10053281]	_	2014-02-16 03:36:11	I'm having fun, watching the 9s. from my laptop here. in Cali!! Feel like I'm at home haha #warriornation.");
-            tweet.Out();
-            DataBase dataBase = new DataBase();
-            var weight = dataBase.caclulateHappines(tweet);
-            Console.WriteLine(weight);
             //this.Loaded += MainWindow_Loaded;
         }
 
