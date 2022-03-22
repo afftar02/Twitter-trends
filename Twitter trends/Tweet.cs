@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends
 {
-	class Tweet
+	public class Tweet
 	{
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
@@ -14,7 +14,12 @@ namespace Twitter_trends
 		private string locationState { get; set; }
 		private double happiness { get; set; }
 
-        public Tweet() { }
+		public Tweet() { }
+
+		public Tweet(Location location)
+		{
+			this.location = location;
+		}
 		public Tweet(Location location, DateTime timeOfCreation, List<string> message)
 		{
 			this.location = location;

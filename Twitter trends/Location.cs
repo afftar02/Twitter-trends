@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends
 {
-	class Location
+	public class Location
 	{
 
 		public double latitude { get; } //x

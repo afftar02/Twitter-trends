@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends.Data
 {
-    class DataBase
+    public class DataBase
     {
 
         private static string[] TWEET_FILE_NAMES = { 
