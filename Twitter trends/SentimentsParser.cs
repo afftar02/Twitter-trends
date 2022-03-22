@@ -12,7 +12,7 @@ namespace Twitter_trends
 
         private static Sentiments SentimentParser(string line)
         {
-            string[] sentiments=line.Split(' ');
+            string[] sentiments=line.Split('\n');
             foreach (var sentiment in sentiments)
             {
                 string[] parts = sentiment.Split(COMMA);
