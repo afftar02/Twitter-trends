@@ -32,7 +32,7 @@ namespace Twitter_trends.Models
                     (((polygon.Points[j].Y - polygon.Points[i].Y) != 0) &&
                     (location.latitude > ((polygon.Points[j].X - polygon.Points[i].X)
                     * (location.longtitude - polygon.Points[i].Y) / (polygon.Points[j].Y - polygon.Points[i].Y) + polygon.Points[i].X))))
-                {
+        {
                     flag = !flag;
                 }
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twitter_trends.Models;
 
 namespace Twitter_trends
 {
@@ -13,6 +14,10 @@ namespace Twitter_trends
 		public List<string> message { get; }
 		public string locationState { get; set; }
 		public double happiness { get; set; }
+
+		private Point pointOnMap;
+
+		public Point PointOnMap { get { return pointOnMap; } set { pointOnMap = value; } }
 
 		public Tweet() { }
 
