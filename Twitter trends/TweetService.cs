@@ -32,7 +32,7 @@ namespace Twitter_trends
                     for (int i = 0; i < cutPhrase.Length; i++)
                     {
                         StringBuilder changePhrase = new StringBuilder(string.Copy(cutPhrase.ToString())); //сохраняем cutPhrase для обрезания 
-                        for (int j = 0; j < changePhrase.Length; j++)
+                        for (int j = 0; j <= changePhrase.Length; j++)
                         {
                             weight += sentiments.GetWeight(changePhrase.ToString());
                             int indexOfLastSpace = changePhrase.ToString().LastIndexOf(' ');
