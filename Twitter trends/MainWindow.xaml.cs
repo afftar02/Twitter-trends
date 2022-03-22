@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Twitter_trends.Data;
 //using Twitter_trends.Data;
 //using Twitter_trends.Models;
 //using Twitter_trends.Models.Parsers;
@@ -38,7 +39,7 @@ namespace Twitter_trends
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {           
+        {
             InitializeComponent();
             //this.Loaded += MainWindow_Loaded;
         }
