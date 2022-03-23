@@ -46,7 +46,17 @@ namespace Twitter_trends
 			}
 			Console.WriteLine(mess);
 		}
-	}
+
+        public override string ToString()
+        {
+			StringBuilder result = new StringBuilder();
+            foreach (var word in message)
+            {
+				result.Append(word + " ");
+            }
+			return result.ToString();
+        }
+    }
 
     
 }

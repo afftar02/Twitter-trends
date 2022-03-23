@@ -160,9 +160,9 @@ namespace Twitter_trends
                     Width = 5,
                     Height = 5,
                     Fill = GetColorByTweet(tweet),
-                    ToolTip = "Tweet : " + tweet.message + "\n" +
+                    ToolTip = "Tweet : " + tweet + "\n" +
                               "Date : " + tweet.timeOfCreation + "\n" +
-                              "MoodWeight : " + tweet.happiness
+                              "Happiness : " + tweet.happiness
                 };
                 gmap.Markers.Add(marker);
             }
