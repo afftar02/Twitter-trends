@@ -24,13 +24,15 @@ namespace Twitter_trends.Data
             "weekend_tweets2014.txt"
         };
 
-        private List<Tweet> tweets;
+        public List<Tweet> tweets { get; private set; }
 
         private Dictionary<State, double> statesHappiness;
 
         public static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
 
         private static readonly char END_OF_LINE = '\n';
+
+        public Country country { get; private set; }
 
         public string Path { get; set; }
 
@@ -77,6 +79,7 @@ namespace Twitter_trends.Data
 		{
             FillTweetsList(Path);
             FillStatesHappiness();
+            country = new Country(states);
 		}
 
         public void addTweet(Tweet tweet)
@@ -96,6 +99,7 @@ namespace Twitter_trends.Data
 			{
                 throw new TwitterTrendsException("Couldn't find state" + state.Name + " in states.");
 			}
+            state.isMoodDefined = true;
             return happiness;
 		}
 

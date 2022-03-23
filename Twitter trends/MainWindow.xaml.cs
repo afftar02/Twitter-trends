@@ -98,7 +98,8 @@ namespace Twitter_trends
                     gmap.Markers.Add(pol);
                 }
 
-                DrawMarkers(state);
+                // TODO:
+                //DrawMarkers(state);
 
             }
 
@@ -110,20 +111,20 @@ namespace Twitter_trends
 
         private SolidColorBrush GetColorByMood(State currentState)
         {
-            double temp = currentState.TotalWeight;
+            double temp = dataBase.getStateHappiness(currentState);
             if (currentState.isMoodDefined)
             {
                 if (temp == 0) return Brushes.White;
                 else if (temp > 0)
                 {
-                    if (temp <= 0.5) return Brushes.GreenYellow;
-                    else if (temp <= 0.75) return Brushes.LimeGreen;
+                    if (temp <= 0.05) return Brushes.GreenYellow;
+                    else if (temp <= 0.075) return Brushes.LimeGreen;
                     else return Brushes.ForestGreen;
                 }
                 else
                 {
-                    if (temp >= -0.5) return Brushes.Yellow;
-                    else if (temp >= -0.75) return Brushes.Orange;
+                    if (temp >= -0.05) return Brushes.Yellow;
+                    else if (temp >= -0.075) return Brushes.Orange;
                     else return Brushes.Red;
                 }
             }
@@ -131,7 +132,7 @@ namespace Twitter_trends
         }
         private SolidColorBrush GetColorByTweet(Tweet tweet)
         {
-            double temp = 0.0;//tweet.MoodWeight;
+            double temp = tweet.happiness;
 
             if (temp == 0) { return Brushes.White; }
             else if (temp > 0)
@@ -151,20 +152,19 @@ namespace Twitter_trends
         }
         private void DrawMarkers(State state)
         {
-            //   List<Tweet> tweets = TweetParser.Parse(path);
-            List<Tweet> tweets = state.Tweets;
+            //List<Tweet> tweets = TweetParser.Parse(path);
+            List<Tweet> tweets = dataBase.tweets;
             foreach (var tweet in tweets)
             {
-                GMapMarker marker = new GMapMarker(new PointLatLng(/*tweet.PointOnMap.X, tweet.PointOnMap.Y*/));
+                GMapMarker marker = new GMapMarker(new PointLatLng(tweet.PointOnMap.X, tweet.PointOnMap.Y));
                 marker.Shape = new Ellipse
                 {
                     Width = 5,
                     Height = 5,
                     Fill = GetColorByTweet(tweet),
-                    //ToolTip = "Tweet : " + tweet.TweetMessage + "\n" +
-                    //          "Date : " + tweet.PublicationDate + "\n" +
-                    //          "MoodWeight : " + tweet.MoodWeight
-                    ToolTip = "some tweet information"
+                    ToolTip = "Tweet : " + tweet.message + "\n" +
+                              "Date : " + tweet.timeOfCreation + "\n" +
+                              "MoodWeight : " + tweet.happiness
                 };
                 gmap.Markers.Add(marker);
             }
@@ -232,7 +232,7 @@ namespace Twitter_trends
 
             dataBase.Path = path;
             await Task.Run(dataBase.StartDatabase);
-            //country = DataBase.Country;
+            country = dataBase.country;
             DrawStates();
 
             controller.Pause();
@@ -254,7 +254,7 @@ namespace Twitter_trends
             {
                 foreach (var polygon in state.Polygons)
                 {
-                    if (true/*ExtraFuncs.IsInside(polygon, tweet)*/)
+                    if (Models.Polygon.IsInside(polygon, tweet.location))
                     {
                         if (state.Tweets.Count == 0)
                         {
@@ -266,8 +266,8 @@ namespace Twitter_trends
                         else
                         {
                             indexBlock.Text = state.Name.ToString();
-                            mostNegativeBlock.Text = state.Tweets.Min(u => 0.0/*u.MoodWeight*/).ToString();
-                            mostPositiveBlock.Text = state.Tweets.Max(u => 0.0/*u.MoodWeight*/).ToString();
+                            mostNegativeBlock.Text = state.Tweets.Min(u => u.happiness).ToString();
+                            mostPositiveBlock.Text = state.Tweets.Max(u => u.happiness).ToString();
                         }
 
                     }

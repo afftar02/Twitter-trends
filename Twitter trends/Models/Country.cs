@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Twitter_trends.Models
 {
-    class Country
+    public class Country
     {
         private string name;
         public string Name { get => name; set => name = value; }
