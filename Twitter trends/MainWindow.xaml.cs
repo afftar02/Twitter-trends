@@ -179,47 +179,47 @@ namespace Twitter_trends
 
                 case "Cali":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\cali_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/cali_tweets2014.txt";
                         break;
                     }
                 case "Family":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\family_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/family_tweets2014.txt";
                         break;
                     }
                 case "Football":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\football_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/football_tweets2014.txt";
                         break;
                     }
                 case "School":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\high_school_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/high_school_tweets2014.txt";
                         break;
                     }
                 case "Movie":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\movie_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/movie_tweets2014.txt";
                         break;
                     }
                 case "Shopping":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\shopping_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/shopping_tweets2014.txt";
                         break;
                     }
                 case "Snow":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\snow_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/snow_tweets2014.txt";
                         break;
                     }
                 case "Texas":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\texas_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/texas_tweets2014.txt";
                         break;
                     }
                 case "Weekend":
                     {
-                        path = @"C:\Users\Nikita\C#_Course_2\Twitter trends\Twitter trends\Data\Resources\tweets\weekend_tweets2014.txt";
+                        path = @"../../Data/Resources/tweets/weekend_tweets2014.txt";
                         break;
                     }
             }
