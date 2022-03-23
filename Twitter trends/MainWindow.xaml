@@ -119,12 +119,6 @@
                             </ComboBox>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem>
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="UnidentifiedFlyingObject"></materialDesign:PackIcon>
-                            <TextBlock Text="I am an UFO" Margin="20 0"></TextBlock>
-                        </StackPanel>
-                    </ListViewItem>
                     <ListViewItem PreviewMouseLeftButtonUp ="listViewItemClose_Click">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="CloseBold"></materialDesign:PackIcon>

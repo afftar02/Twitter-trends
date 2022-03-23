@@ -76,7 +76,7 @@ namespace Twitter_trends
             GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
             GMapProvider.WebProxy.Credentials = CredentialCache.DefaultCredentials;
         }
-        private void DrawStates()
+        private async void DrawStates()
         {
             gmap.Markers.Clear();
             foreach (var state in DataBase.states)
@@ -98,10 +98,9 @@ namespace Twitter_trends
                     gmap.Markers.Add(pol);
                 }
 
-                // TODO:
-                //DrawMarkers(state);
-
             }
+
+            DrawMarkers();
 
         }
         private void listViewItemClose_Click(object sender, RoutedEventArgs e)
@@ -150,13 +149,12 @@ namespace Twitter_trends
 
 
         }
-        private void DrawMarkers(State state)
+        private async void DrawMarkers()
         {
-            //List<Tweet> tweets = TweetParser.Parse(path);
             List<Tweet> tweets = dataBase.tweets;
             foreach (var tweet in tweets)
             {
-                GMapMarker marker = new GMapMarker(new PointLatLng(tweet.PointOnMap.X, tweet.PointOnMap.Y));
+                GMapMarker marker = new GMapMarker(new PointLatLng(tweet.location.latitude,tweet.location.longtitude));
                 marker.Shape = new Ellipse
                 {
                     Width = 5,
@@ -245,17 +243,16 @@ namespace Twitter_trends
 
             PointLatLng clickpoint = new PointLatLng();
             clickpoint = gmap.FromLocalToLatLng((int)Mouse.GetPosition(this).X, (int)Mouse.GetPosition(this).Y);
-            Point point = new Point(clickpoint.Lat, clickpoint.Lng);
-            Tweet tweet = new Tweet();
-            tweet.PointOnMap = point;
+            Location location = new Location(clickpoint.Lat, clickpoint.Lng);
+            Tweet tweet = new Tweet(location);
 
-
-            foreach (var state in country.States)
+            foreach (var state in DataBase.states)
             {
                 foreach (var polygon in state.Polygons)
                 {
                     if (Models.Polygon.IsInside(polygon, tweet.location))
                     {
+                        //TODO
                         if (state.Tweets.Count == 0)
                         {
                             mostNegativeBlock.Text = "NaN";
