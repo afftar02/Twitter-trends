@@ -26,7 +26,7 @@ namespace Twitter_trends.Data
 
         public List<Tweet> tweets { get; private set; }
 
-        private Dictionary<State, double> statesHappiness;
+        private Dictionary<State, double?> statesHappiness;
 
         public static List<State> states = StatesParser.Parse(StatesReader.Read(@"..\..\Data\Resources\states\states.json"));
 
@@ -50,10 +50,11 @@ namespace Twitter_trends.Data
 
         private void FillStatesHappiness()
 		{
-            this.statesHappiness = new Dictionary<State, double>();
+            this.statesHappiness = new Dictionary<State, double?>();
             for(int i = 0; i < states.Count; i++)
 			{
-                double happiness = 0.0;
+                double? happiness = 0.0;
+                bool flag = false;
                 int numberOfTweetsInState = 0;
                 for(int j = 0; j < tweets.Count; j++)
 				{
@@ -61,15 +62,16 @@ namespace Twitter_trends.Data
 					{
                         happiness += tweets[j].happiness;
                         numberOfTweetsInState++;
+                        flag = true;
 					}
 				}
-				if (numberOfTweetsInState != 0)
+				if (flag)
 				{
                     statesHappiness.Add(states[i], happiness / numberOfTweetsInState);
 				}
 				else
 				{
-                    statesHappiness.Add(states[i], 0);
+                    statesHappiness.Add(states[i], null);
 				}
                 Console.WriteLine(states[i].Name + ' ' + statesHappiness[states[i]].ToString());
 			}
@@ -92,9 +94,9 @@ namespace Twitter_trends.Data
             return tweets.Count();
 		}
 
-        public double getStateHappiness(State state)
+        public double? getStateHappiness(State state)
 		{
-            double happiness;
+            double? happiness;
             if(!statesHappiness.TryGetValue(state, out happiness))
 			{
                 throw new TwitterTrendsException("Couldn't find state" + state.Name + " in states.");
