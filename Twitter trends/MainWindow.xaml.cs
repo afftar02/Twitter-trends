@@ -103,10 +103,6 @@ namespace Twitter_trends
 			DrawMarkers();
 
 		}
-		private void listViewItemClose_Click(object sender, RoutedEventArgs e)
-		{
-			Application.Current.Shutdown();
-		}
 
 		private SolidColorBrush GetColorByMood(State currentState)
 		{
