@@ -12,16 +12,16 @@ namespace Twitter_trends.Data
     public class DataBase
     {
 
-        private static string[] TWEET_FILE_NAMES = { 
-            "cali_tweets2014.txt",
-            "family_tweets2014.txt",
-            "football_tweets2014.txt",
-            "high_school_tweets2014.txt",
-            "movie_tweets2014.txt",
-            "shopping_tweets2014.txt",
-            "snow_tweets2014.txt",
-            "texas_tweets2014.txt",
-            "weekend_tweets2014.txt"
+        private static string[] TWEET_FILE_NAMES = {
+            @"..\..\Data\Resources\states\cali_tweets2014.txt",
+            @"..\..\Data\Resources\states\family_tweets2014.txt",
+            @"..\..\Data\Resources\states\football_tweets2014.txt",
+            @"..\..\Data\Resources\states\high_school_tweets2014.txt",
+            @"..\..\Data\Resources\states\movie_tweets2014.txt",
+            @"..\..\Data\Resources\states\shopping_tweets2014.txt",
+            @"..\..\Data\Resources\states\snow_tweets2014.txt",
+            @"..\..\Data\Resources\states\texas_tweets2014.txt",
+            @"..\..\Data\Resources\states\weekend_tweets2014.txt"
         };
 
         public List<Tweet> tweets { get; private set; }

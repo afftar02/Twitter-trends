@@ -19,6 +19,7 @@ namespace Twitter_trends
         {
             StringBuilder phrase = new StringBuilder();
             double weight = 0;
+            int numberOfWordsFound = 0;
             foreach (var word in message)
             {
                 if (word.Length == 1 && char.IsPunctuation(Convert.ToChar(word)) && !string.IsNullOrEmpty(phrase.ToString()))
@@ -34,7 +35,12 @@ namespace Twitter_trends
                         StringBuilder changePhrase = new StringBuilder(string.Copy(cutPhrase.ToString())); //сохраняем cutPhrase для обрезания 
                         for (int j = 0; j <= changePhrase.Length; j++)
                         {
-                            weight += sentiments.GetWeight(changePhrase.ToString());
+                            double weightOfTweet = sentiments.GetWeight(changePhrase.ToString());
+							if (weightOfTweet != 0)
+							{
+                                numberOfWordsFound++;
+							}
+                            weight += weightOfTweet;
                             int indexOfLastSpace = changePhrase.ToString().LastIndexOf(' ');
                             if (indexOfLastSpace < 0) indexOfLastSpace = 0;
                             changePhrase.Remove(indexOfLastSpace, changePhrase.Length - indexOfLastSpace);
@@ -56,7 +62,14 @@ namespace Twitter_trends
                     }
                 }
             }
-            return weight;
+            if (numberOfWordsFound != 0)
+            {
+                return weight / numberOfWordsFound;
+            }
+            else
+            {
+                return weight;
+            }
         }
         public static string GetStateByLocation(Location loc)
         {

@@ -34,19 +34,6 @@ namespace Twitter_trends
 			this.happiness = TweetService.caclulateHappines(message);
 		}
 
-		public void Out() // TODO test method, should be removed
-		{
-			Console.WriteLine(location.latitude);
-			Console.WriteLine(location.longtitude);
-			Console.WriteLine(timeOfCreation.ToString());
-			string mess = "";
-			for(int i = 0; i < message.Count; i++)
-			{
-				mess += message[i] + ' ';
-			}
-			Console.WriteLine(mess);
-		}
-
         public override string ToString()
         {
 			StringBuilder result = new StringBuilder();
