@@ -34,6 +34,13 @@ namespace Twitter_trends
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		const int MAP_MAX_ZOOM = 20, MAP_MIN_ZOOM = 3, MAP_ZOOM = 3,
+				  START_LATITUDE = 50, START_LONGTITUDE = -90, MARKER_WIDTH = 5,
+				  MARKER_HEIGHT = 5;
+		const double STROKE_POLYGON_THICKNESS = 1.5;
+
+		Country country;
+		DataBase dataBase = new DataBase();
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -41,17 +48,10 @@ namespace Twitter_trends
 		}
 		private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
-
-			//data
 			//загрузка вьюмодел для кнопок меню
 			ListView viewModel = new ListView();
 			this.DataContext = viewModel;
-
-
 		}
-		Country country;
-
-		DataBase dataBase = new DataBase();
 		private void Loaded_gmap(object sender, RoutedEventArgs e)
 		{
 			gmap.Bearing = 0;
@@ -59,18 +59,18 @@ namespace Twitter_trends
 			gmap.DragButton = MouseButton.Left;
 
 
-			gmap.MaxZoom = 20;
-			gmap.MinZoom = 3;
+			gmap.MaxZoom = MAP_MAX_ZOOM;
+			gmap.MinZoom = MAP_MIN_ZOOM;
 
 			gmap.MouseWheelZoomType = MouseWheelZoomType.MousePositionWithoutCenter;
 
 			gmap.ShowTileGridLines = false;
-			gmap.Zoom = 3;
+			gmap.Zoom = MAP_ZOOM;
 			gmap.ShowCenter = false;
 
 			gmap.MapProvider = GMapProviders.BingMap;
 			GMaps.Instance.Mode = AccessMode.ServerOnly;
-			gmap.Position = new PointLatLng(50, -90);
+			gmap.Position = new PointLatLng(START_LATITUDE, START_LONGTITUDE);
 
 
 			GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
@@ -93,7 +93,7 @@ namespace Twitter_trends
 					gmap.RegenerateShape(pol);
 					(pol.Shape as Path).Fill = GetColorByMood(state);
 					(pol.Shape as Path).Stroke = Brushes.Blue;
-					(pol.Shape as Path).StrokeThickness = 1.5;
+					(pol.Shape as Path).StrokeThickness = STROKE_POLYGON_THICKNESS;
 					(pol.Shape as Path).Effect = null;
 					gmap.Markers.Add(pol);
 				}
@@ -154,8 +154,8 @@ namespace Twitter_trends
 				GMapMarker marker = new GMapMarker(new PointLatLng(tweet.location.latitude, tweet.location.longtitude));
 				marker.Shape = new Ellipse
 				{
-					Width = 5,
-					Height = 5,
+					Width = MARKER_WIDTH,
+					Height = MARKER_HEIGHT,
 					Fill = GetColorByTweet(tweet),
 					ToolTip = "Tweet : " + tweet + "\n" +
 							  "Date : " + tweet.timeOfCreation + "\n" +
