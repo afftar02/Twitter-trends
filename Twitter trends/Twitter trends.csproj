@@ -104,9 +104,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\Readers\StatesReader.cs" />
-    <Compile Include="Sentiments.cs" />
-    <Compile Include="SentimentsParser.cs" />
-    <Compile Include="SentimentsReader.cs" />
+    <Compile Include="Models\Sentiments.cs" />
+    <Compile Include="Services\Parsers\SentimentsParser.cs" />
+    <Compile Include="Services\Readers\SentimentsReader.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Polygon.cs" />
     <Compile Include="Models\State.cs" />
@@ -118,10 +118,10 @@
     <Compile Include="Models\Sentiment.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Tweet.cs" />
-    <Compile Include="TweetParser.cs" />
-    <Compile Include="TweetService.cs" />
-    <Compile Include="TwitterTrendsException.cs" />
-    <Compile Include="TxtReader.cs" />
+    <Compile Include="Services\Parsers\TweetParser.cs" />
+    <Compile Include="Services\TweetService.cs" />
+    <Compile Include="Services\TwitterTrendsException.cs" />
+    <Compile Include="Services\Readers\TxtReader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -137,7 +137,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapControl.cs" />
+    <Compile Include="Models\MapControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
