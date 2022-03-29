@@ -234,41 +234,5 @@ namespace Twitter_trends
 			controller.GotoFrame(0);
 			TwitterLogoImage.Visibility = Visibility.Visible;
 		}
-
-		private void MouseDoubleClick(object sender, MouseButtonEventArgs e)
-		{
-
-			PointLatLng clickpoint = new PointLatLng();
-			clickpoint = gmap.FromLocalToLatLng((int)Mouse.GetPosition(this).X, (int)Mouse.GetPosition(this).Y);
-			Location location = new Location(clickpoint.Lat, clickpoint.Lng);
-			Tweet tweet = new Tweet(location);
-
-			foreach (var state in DataBase.states)
-			{
-				foreach (var polygon in state.Polygons)
-				{
-					if (Models.Polygon.IsInside(polygon, tweet.location))
-					{
-						//TODO
-						if (state.Tweets.Count == 0)
-						{
-							mostNegativeBlock.Text = "NaN";
-							mostPositiveBlock.Text = "NaN";
-							indexBlock.Text = state.Name.ToString();
-
-						}
-						else
-						{
-							indexBlock.Text = state.Name.ToString();
-							mostNegativeBlock.Text = state.Tweets.Min(u => u.happiness).ToString();
-							mostPositiveBlock.Text = state.Tweets.Max(u => u.happiness).ToString();
-						}
-
-					}
-				}
-
-			}
-
-		}
 	}
 }
