@@ -46,8 +46,13 @@ namespace Twitter_trends
 			}
 		}
 
-		private static List<string> MessageParser(string message)
+		public static List<string> MessageParser(string message)
 		{
+			message = Regex.Replace(message, REGEX_LINK_FIND, COMMA);
+			message = Regex.Replace(message, REGEX_PUNCTUATION_FIND, (m) => SPACE + m + SPACE);
+			message = Regex.Replace(message, REGEX_MULTIPLE_SPACES, SPACE);
+			message = message.Trim();
+			message = message.ToLower();
 			List<string> splittedMessage = new List<string>(message.Split(SPACE.ToCharArray()[0]));
 			DeleteSpaces(ref splittedMessage);
 			return splittedMessage;
@@ -62,13 +67,9 @@ namespace Twitter_trends
 			string[] splittedLine = line.Split(SPLITTER);
 			string date = splittedLine[1].Substring(1, DATE_TIME_LENGTH);
 			string message = splittedLine[1].Substring(20, splittedLine[1].Length - DATE_TIME_LENGTH - 1);
-			message = Regex.Replace(message, REGEX_LINK_FIND, COMMA);
-			message = Regex.Replace(message, REGEX_PUNCTUATION_FIND, (m) => SPACE + m + SPACE);
-			message = Regex.Replace(message, REGEX_MULTIPLE_SPACES, SPACE);
-			message = message.Trim();
-			message = message.ToLower();
-			List<string> testParsedList = MessageParser(message);
-			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), MessageParser(message));
+			
+			//List<string> testParsedList = MessageParser(message);
+			return new Tweet(LocationParser(splittedLine[0]), DateTime.Parse(date), message);
 		}
 	}
 }

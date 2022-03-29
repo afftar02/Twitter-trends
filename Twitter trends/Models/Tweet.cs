@@ -11,7 +11,7 @@ namespace Twitter_trends
 	{
 		public Location location { get; }
 		public DateTime timeOfCreation { get; }
-		public List<string> message { get; }
+		public string message { get; }
 		public string locationState { get; set; }
 		public double happiness { get; set; }
 
@@ -25,13 +25,13 @@ namespace Twitter_trends
 		{
 			this.location = location;
 		}
-		public Tweet(Location location, DateTime timeOfCreation, List<string> message)
+		public Tweet(Location location, DateTime timeOfCreation, string message)
 		{
 			this.location = location;
 			this.timeOfCreation = timeOfCreation;
 			this.message = message;
 			this.locationState = TweetService.GetStateByLocation(location);
-			this.happiness = TweetService.caclulateHappines(message);
+			this.happiness = TweetService.caclulateHappines(TweetParser.MessageParser(message));
 		}
 
         public override string ToString()

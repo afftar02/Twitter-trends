@@ -157,7 +157,7 @@ namespace Twitter_trends
 					Width = 5,
 					Height = 5,
 					Fill = GetColorByTweet(tweet),
-					ToolTip = "Tweet : " + tweet + "\n" +
+					ToolTip = "Tweet : " + tweet.message + "\n" +
 							  "Date : " + tweet.timeOfCreation + "\n" +
 							  "Happiness : " + tweet.happiness
 				};
