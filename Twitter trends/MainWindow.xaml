@@ -67,7 +67,7 @@
               Grid.Column="0"
               Grid.ColumnSpan="3"
               >
-            <gmaps:GMapControl MouseDoubleClick="MouseDoubleClick" x:Name="gmap" Loaded="Loaded_gmap"/>
+            <gmaps:GMapControl x:Name="gmap" Loaded="Loaded_gmap"/>
         </Grid>
         <Grid x:Name="RightStatisticsInfoGrid"
               Grid.Row="0"
@@ -79,57 +79,9 @@
                        gif:ImageBehavior.AutoStart="False"
                        Height="216"
                        DockPanel.Dock="Top"/>
-
-                <TextBlock Text="Statistics:"
-                           HorizontalAlignment="Center"
-                           Foreground="White"
-                           DockPanel.Dock="Top">
-                </TextBlock>
-                <DockPanel x:Name="statisticsdockpanel" 
-                           HorizontalAlignment="Left"
-                           DockPanel.Dock="Top"
-                           >
-                    <DockPanel x:Name="StatsStateIndex"
-                               DockPanel.Dock="Top">
-                        <Label Content="State index:" 
-                               HorizontalAlignment="Left"
-                               Foreground="White"
-                               VerticalAlignment="Top"/>
-                        <TextBlock x:Name="indexBlock"
-                                   DockPanel.Dock="Right"
-                                   TextWrapping="Wrap" 
-                                   Foreground="White"
-                                   VerticalAlignment="Center"
-                                   Width="auto"/>
-                    </DockPanel>
-                    <DockPanel x:Name="StatsNegativeTweet"
-                               DockPanel.Dock="Top">
-                        <Label Content="Value of the most negative tweet:"
-                               Foreground="White"
-                               VerticalAlignment="Top"/>
-                        <TextBlock x:Name="mostNegativeBlock"
-                                   DockPanel.Dock="Right"
-                                   TextWrapping="Wrap" 
-                                   Foreground="White"
-                                   VerticalAlignment="Center" 
-                                   Width="auto"/>
-                    </DockPanel>
-                    <DockPanel x:Name="StatsPositiveTweet"
-                               DockPanel.Dock="Top">
-                        <Label Content="Value of the most positive tweet:" 
-                               Foreground="White"
-                               VerticalAlignment="Top"/>
-                        <TextBlock x:Name="mostPositiveBlock"
-                               HorizontalAlignment="Left" 
-                               TextWrapping="Wrap"
-                                   Foreground="White"
-                               VerticalAlignment="Center" 
-                               Width="auto"/>
-                    </DockPanel>
-                </DockPanel>
                 <DockPanel x:Name="ColorLegend"
                            DockPanel.Dock="Top"
-                           Margin="0 50">
+                           Margin="0 50" Height="280">
                     <TextBlock Text="MoodLevel Scale"
                                VerticalAlignment="Center"
                                DockPanel.Dock="Top"
